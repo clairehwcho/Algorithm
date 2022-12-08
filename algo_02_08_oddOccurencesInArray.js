@@ -17,46 +17,23 @@ const two_nums4 = [5, 2, 6, 2, 3, 1, 6, 3, 2, 5, 2];
 const two_expected4 = 1;
 
 function oddOccurrencesInArray (nums) {
-    let currentIdx = 0;
+    let freqTable = {};
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[currentIdx] === nums[i]) {
-            currentIdx++;
+    for (let key of nums) {
+        if (freqTable.hasOwnProperty(key)) {
+            freqTable[key]++;
+        }
+        else {
+            freqTable[key] = 1;
+        }
+    };
+
+    for (let key in freqTable) {
+        if (freqTable[key] % 2 !== 0) {
+            return parseInt(key);
         }
     }
-    return nums[currentIdx];
-
-
-
-
-
-
-
-
-
-
-
-    // for (let i = 0; i < nums.length; i++) {
-    //     let freq = 0;
-    //     for (let j = 0; j < nums.length; j++) {
-    //         if (nums[i] == nums[j]) {
-    //             freq++;
-    //         }
-    //     }
-    //     if (freq % 2 == 1) {
-    //         return nums[i]
-    //     }
-    // }
-}
-
-// Solution #2
-// function oddOccurrencesInArray (nums) {
-//     let obj = makeFrequencyTable(nums)
-//     for (var key in obj) {
-//         if (obj[key] % 2 != 0) return +key // good pro tip
-//     }
-//     return -1
-// }
+};
 
 console.log(oddOccurrencesInArray(two_nums1));
 console.log(oddOccurrencesInArray(two_nums2));

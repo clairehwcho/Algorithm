@@ -6,12 +6,19 @@ var arr2d =
 
 function flatten (arr2d) {
     let result = [];
-    for (let i = 0; i<arr2d.length; i++){
+
+    for(let i = 0; i<arr2d.length; i++){
         for (let j = 0; j<arr2d[i].length; j++){
-            result.push(arr2d[i][j]);
+            result.push(arr2d[i][j])
         }
     }
     return result;
+
+    // Alternative:
+    // let result = [];
+    // result = arr2d.flat();
+    // return result;
+
 }
 
 console.log(flatten(arr2d));

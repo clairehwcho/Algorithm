@@ -17,21 +17,24 @@ const two_expected2 = "aaabbccccccccccccdddddddddd";
 
 
 function decodeStr (str) {
-    let result = "";
+    let resultStr = "";
+
     for (let i = 0; i < str.length; i++) {
+        let currentLetter = str[i];
         let count = "";
-        let currentChar = str[i];
-        while (!isNaN(str[i + 1]) && i < str.length) {
+
+        while (!isNaN(str[i + 1])) {
             count += str[i + 1];
             i++;
         }
-        result += currentChar.repeat(parseInt(count));
-        // Same as:
+
+        result += currentLetter.repeat(parseInt(count));
+        // Alternative:
         // for (let j = 0; j < parseInt(count); j++) {
-        //     result += currentLetter;
+        //     resultStr += currentLetter;
         // }
     }
-    return result;
+    return resultStr;
 }
 
 console.log(decodeStr(two_str1))

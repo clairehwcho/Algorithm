@@ -45,13 +45,23 @@ const arr2 = ["a", "b", "c", "d", "e", "f"];
 
 function reverseArr (arr) {
     let temp = "";
-    for (let startIdx = 0; startIdx < arr.length / 2; startIdx++) {
-        endIdx = arr.length - 1 - startIdx;
+
+    for (let i = 0; i < arr.length / 2; i++) {
+        let startIdx = i;
+        let endIdx = arr.length - 1 - i;
+
         temp = arr[startIdx];
         arr[startIdx] = arr[endIdx];
         arr[endIdx] = temp;
     }
     return arr;
+
+    // Alternative:
+    // let resultArr = [];
+    // for (let i = arr.length-1; i>=0; i--){
+    //     resultArr.push(arr[i]);
+    // }
+    // return resultArr;
 }
 
 console.log("----- reverseArr -----");

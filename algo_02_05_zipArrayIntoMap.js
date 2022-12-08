@@ -31,14 +31,13 @@ const expected4 = {
 
 function zipArraysIntoMap (keys, values) {
     let resultObj = {};
+
     while (keys.length >= values.length) {
         for (let i = 0; i < keys.length; i++) {
-            if (values[i] === undefined) {
+            if (!values[i]) {
                 resultObj[keys[i]] = "";
             }
-            else {
-                resultObj[keys[i]] = values[i];
-            }
+            resultObj[keys[i]] = values[i];
         }
         return resultObj;
     }

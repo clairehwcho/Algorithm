@@ -19,30 +19,29 @@ const two_expected3 = "SDLC";
 const two_str4 = "  global   information tracker    ";
 const two_expected4 = "GIT";
 
-// Solution #1
 function acronymize (str) {
-    let result = "";
-    let newStr = str.trim().replace(/ +/g, " ");
-    let arr = newStr.split(" ");
-    for (let i = 0; i < arr.length; i++) {
-        result += arr[i][0];
-    }
-    return result.toUpperCase();
-}
+  let newStr = str.trim().replace(/ +/g, " ");
+  let newArr = newStr.split(" ");
+  let resultStr = "";
 
-// Solution #2
-function acronymize (str) {
-    let result = "";
-    let arr = str.split(" ");
-    for (let i = 0; i < arr.length; i++){
-        if (arr[i] == " "){
-        // pass
-        }
-        else {
-            result += arr[i].charAt(0);
-        }
-    }
-    return result.toUpperCase();
+  for (let i = 0; i < newArr.length; i++) {
+    resultStr += newArr[i].charAt(0).toUpperCase();
+  }
+  return resultStr;
+
+  // Alternative:
+  // let newArr = str.split(" ");
+  // let resultStr = "";
+
+  // for (let i = 0; i < newArr.length; i++) {
+  //   if (newArr[i] === " ") {
+  //     // pass
+  //   }
+  //   else {
+  //     resultStr += newArr[i].charAt(0).toUpperCase();
+  //   }
+  // }
+  // return resultStr;
 }
 
 console.log(acronymize(two_str1));

@@ -5,11 +5,10 @@ var arr2d =
     [5, 7, 7]];
 
 function isPresent2d (arr2d, value) {
-    for (let i=0; i<arr2d.length; i++){
-        for (let j = 0; j<arr2d[i].length; j++){
-            if (arr2d[i][j] == value){
-                return true;
-            }
+
+    for (let i = 0; i < arr2d.length; i++) {
+        if (arr2d[i].includes(value)) {
+            return true;
         }
     }
     return false;

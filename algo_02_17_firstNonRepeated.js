@@ -1,29 +1,59 @@
+// Find the first non-repeating number in a given array of integers.
+
+const arr1 = [-1, 2, -1, 3, 0];
+const expected1 = 2;
+
+const arr2 = [9, 4, 9, 6, 7, 4];
+const expected2 = 6
+
+const arr3 = [9, 4, 9, 4];
+const expected3 = null;
+
 function firstNonRepeated (arr) {
-    let obj = {}
+    let resultNum = arr[0];
+    let freqTable = {};
+
     for (let i = 0; i < arr.length; i++) {
-        if (!obj[arr[i]]) obj[arr[i]] = 1
-        else obj[arr[i]]++
+        let key = arr[i];
+        if (freqTable.hasOwnProperty(key)) {
+            freqTable[key]++;
+        }
+        else {
+            freqTable[key] = 1;
+        }
     }
+
     for (let i = 0; i < arr.length; i++) {
-        if (obj[arr[i]] === 1) return arr[i]
+        let key = arr[i];
+        if (freqTable[key] === 1) {
+            resultNum = parseInt(key);
+            return resultNum;
+        }
     }
-    return null
+    return null;
+
+    // Alternative:
+    // for (let i = 0; i < arr.length; i++) {
+    //     let currentNum = arr[i];
+    //     let isMatch = false;
+    //     let j = 0;
+    //     while (j < arr.length) {
+    //         if (j === i) {
+    //             j++;
+    //             continue;
+    //         }
+    //         if (currentNum === arr[j]) {
+    //             isMatch = true;
+    //         }
+    //         j++;
+    //     }
+    //     if (!isMatch) {
+    //         return currentNum;
+    //     }
+    // }
+    // return null;
 }
 
-function firstNonRepeated (nums) {
-    for (let i = 0; i < nums.length; i++) {
-        let val = nums[i] //current value to consider
-        for (let j = 0; j < nums.length; j++) {
-            let match = false //keep track of if we find a match
-            if (j == i) { //skip over the same element we are considering
-                continue
-            }
-            if (nums[j] == val) { //if we hit a match
-                match = true //set match to true
-                break //break loop
-            }
-        }
-        if (!match) return val //if we didn't find a match, return the value
-    }
-    return null //if we never found a single item, return null
-}
+console.log(firstNonRepeated(arr1));
+console.log(firstNonRepeated(arr2));
+console.log(firstNonRepeated(arr3));

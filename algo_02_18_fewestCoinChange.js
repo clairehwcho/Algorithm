@@ -1,34 +1,49 @@
-// 7-21
+// Make change with the minimum number of coins (quarter = 25 cents, dime = 10 cents, nickel = 5 cents, penny = 1 cent).
+
+const cents1 = 25;
+const expected1 = { quarter: 1 };
+
+const cents2 = 50;
+const expected2 = { quarter: 2 };
+
+const cents3 = 9;
+const expected3 = { nickel: 1, penny: 4 };
+
+const cents4 = 99;
+const expected4 = { quarter: 3, dime: 2, penny: 4 }
+
 function fewestCoinChange (cents) {
-    let outcome = {}
-    let temp
-    if (Math.floor(cents / 25) != 0) {
-        temp = Math.floor(cents / 25)
-        outcome['quarter'] = temp
-        cents = cents - (25 * temp)
+    let resultObj = {};
+    let temp;
+
+    if (Math.floor(cents / 25) > 0) {
+        temp = Math.floor(cents / 25);
+        resultObj["quarter"] = temp;
+        cents = cents - temp * 25;
     }
-    if (Math.floor(cents / 10) != 0) {
-        temp = Math.floor(cents / 10)
-        outcome['dime'] = temp
-        cents = cents - (10 * temp)
+
+    if (Math.floor(cents / 10) > 0) {
+        temp = Math.floor(cents / 10);
+        resultObj["dime"] = temp;
+        cents = cents - temp * 10;
     }
-    if (Math.floor(cents / 5) != 0) {
-        temp = Math.floor(cents / 5)
-        outcome['nickel'] = temp
-        cents = cents - (5 * temp)
-        // console.log(cents)
+
+    if (Math.floor(cents / 5) > 0) {
+        temp = Math.floor(cents / 5);
+        resultObj["nickel"] = temp;
+        cents = cents - temp * 5;
     }
-    if (Math.floor(cents / 1) != 0) {
-        temp = Math.floor(cents / 1)
-        outcome['penny'] = temp
-        // cents = cents - temp
+
+    if (Math.floor(cents / 1) > 0) {
+        temp = Math.floor(cents / 1);
+        resultObj["penny"] = temp;
+        cents = cents - temp * 1;
     }
-    // outcome['penny'] = 4
-    return outcome
+
+    return resultObj;
 }
 
-
-console.log(fewestCoinChange(cents1)) // { quarter: 1 }
-console.log(fewestCoinChange(cents2)) // { quarter: 2 }
-console.log(fewestCoinChange(cents3)) // { nickel: 1, penny: 4 }
-console.log(fewestCoinChange(cents4)) // { quarter: 3, dime: 2, penny: 4 }
+console.log(fewestCoinChange(cents1));
+console.log(fewestCoinChange(cents2));
+console.log(fewestCoinChange(cents3));
+console.log(fewestCoinChange(cents4));

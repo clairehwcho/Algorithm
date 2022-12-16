@@ -26,7 +26,6 @@ const expected5 = [5, 1];
 
 const nums6 = [5, 1, 4, 1, 5, 4];
 const expected6 = [];
-//  - order doesn't matter
 
 /**
  * Finds the mode or all modes if there are more than one. The mode is the
@@ -37,28 +36,57 @@ const expected6 = [];
  * @returns {Array<number>} Mode or modes in any order.
  */
 function mode (nums) {
-    var maxcount = 0
-    var result = []
-    for (var i = 0; i < nums.length; i++) { // 1
-        var count = 0
-        for (var j = 0; j < nums.length; j++) {
-            if (nums[j] == nums[i]) { // 5 == 1
-                count++ // 2
-            }
+    let resultArr = [];
+    let freqTable = {};
+
+    if (nums.length === 0) {
+        return resultArr;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        let currentNum = nums[i];
+        if (freqTable.hasOwnProperty(currentNum)){
+            freqTable[currentNum] ++;
         }
-        if (count > maxcount) { //2 > 0
-            maxcount = count // 2
-            result.push(nums[i]) // 5
+        else {
+            freqTable[currentNum] = 1
         }
     }
-    return result
+
+    let valArr = freqTable.vals();
+
+
+
+
+
+
+
+
+
+
+
+    // var maxcount = 0
+    // var result = []
+    // for (var i = 0; i < nums.length; i++) { // 1
+    //     var count = 0
+    //     for (var j = 0; j < nums.length; j++) {
+    //         if (nums[j] == nums[i]) { // 5 == 1
+    //             count++ // 2
+    //         }
+    //     }
+    //     if (count > maxcount) { //2 > 0
+    //         maxcount = count // 2
+    //         result.push(nums[i]) // 5
+    //     }
+    // }
+    // return result
 }
 
 
 
-// console.log(mode(nums1))
-// console.log(mode(nums2))
-// console.log(mode(nums3))
-// console.log(mode(nums4))
-// console.log(mode(nums5))
+console.log(mode(nums1))
+console.log(mode(nums2))
+console.log(mode(nums3))
+console.log(mode(nums4))
+console.log(mode(nums5))
 console.log(mode(nums6))

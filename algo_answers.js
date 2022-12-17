@@ -1,18 +1,3 @@
-// 7-22
-function mode (nums) {
-    let obj = {}
-    let max = 0
-    let output = []
-    for (var i = 0; i < nums.length; i++) {
-        if (!obj[nums[i]]) obj[nums[i]] = 1
-        else obj[nums[i]]++
-    }
-    for (let key in obj) if (obj[key] > max) max = obj[key]
-    for (let key in obj) if (obj[key] == max) output.push(key)
-    if (output.length == Object.keys(obj).length) return []
-    return output
-}
-
 // 7-25
 function recursiveSigma (num, i = 1) {
     num = Math.floor(num)

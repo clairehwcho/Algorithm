@@ -23,8 +23,8 @@ function firstNonRepeated (arr) {
         }
     }
 
-    for (let i = 0; i < arr.length; i++) {
-        let key = arr[i];
+    for (let j = 0; j < arr.length; j++) {
+        let key = arr[j];
         if (freqTable[key] === 1) {
             resultNum = parseInt(key);
             return resultNum;

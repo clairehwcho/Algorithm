@@ -38,51 +38,41 @@ const expected6 = [];
 function mode (nums) {
     let resultArr = [];
     let freqTable = {};
+    let maxFreq = 0;
 
     if (nums.length === 0) {
         return resultArr;
     }
 
+    if (nums.length === 1) {
+        return nums;
+    }
+
     for (let i = 0; i < nums.length; i++) {
-        let currentNum = nums[i];
-        if (freqTable.hasOwnProperty(currentNum)){
-            freqTable[currentNum] ++;
+        let key = nums[i];
+        if (!freqTable.hasOwnProperty(key)) {
+            freqTable[key] = 1
         }
         else {
-            freqTable[currentNum] = 1
+            freqTable[key]++;
+        }
+        if (freqTable[key] > maxFreq) {
+            maxFreq = freqTable[key];
         }
     }
 
-    let valArr = freqTable.vals();
+    for (let key in freqTable) {
+        if (freqTable[key] === maxFreq) {
+            resultArr.push(key);
+        }
+    }
 
+    if (resultArr.length === Object.keys(freqTable).length) {
+        resultArr = [];
+    }
 
-
-
-
-
-
-
-
-
-
-    // var maxcount = 0
-    // var result = []
-    // for (var i = 0; i < nums.length; i++) { // 1
-    //     var count = 0
-    //     for (var j = 0; j < nums.length; j++) {
-    //         if (nums[j] == nums[i]) { // 5 == 1
-    //             count++ // 2
-    //         }
-    //     }
-    //     if (count > maxcount) { //2 > 0
-    //         maxcount = count // 2
-    //         result.push(nums[i]) // 5
-    //     }
-    // }
-    // return result
+    return resultArr;
 }
-
-
 
 console.log(mode(nums1))
 console.log(mode(nums2))

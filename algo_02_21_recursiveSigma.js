@@ -19,23 +19,19 @@ const expected3 = 0;
  * @param {Array<number>} nums
  * @returns {number} The sum of the given nums.
  */
-function sumArr(nums, i=0) {
-    // edge case (pri 1)
-
-    // base case (pri 0)
-    if (i === nums.length){
-        return 0
+function recursiveSumArr (nums, i = 0) {
+    if (nums.length === 0) {
+        return 0;
     }
-
-    // recursive call (pri 0)
-    return nums[i] + sumArr(nums, i+=1)
-
-    // let sum = 0
-    // for (let i=0; i<nums.length; i++){
-    //     sum += nums[i]
-    // }
-    // return sum
+    if (i === nums.length - 1) {
+        return nums[i];
+    }
+    return nums[i] + recursiveSumArr(nums, i += 1);
 }
+
+console.log(recursiveSumArr(nums1));
+console.log(recursiveSumArr(nums2));
+console.log(recursiveSumArr(nums3));
 
 /*****************************************************************************/
 
@@ -63,10 +59,12 @@ const two_expected3 = 0;
  * @param {number} num
  * @returns {number}
  */
-function recursiveSigma(num) {
-    num = Math.floor(num)
-    if (num <1) return 0;
-    return num + recursiveSigma(num -1)
+function recursiveSigma (num) {
+    num = Math.floor(num);
+    if (num <= 0) {
+        return 0;
+    }
+    return num + recursiveSigma(num - 1);
 }
 
 console.log(recursiveSigma(two_num1))

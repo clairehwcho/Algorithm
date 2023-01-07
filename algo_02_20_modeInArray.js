@@ -1,12 +1,12 @@
 /*
-  Array: Mode
+Array: Mode
 
-  Create a function that, given an array of ints,
-  returns the int that occurs most frequently in the array.
-  What if there are multiple items that occur the same number of time?
+Create a function that, given an array of ints,
+returns the int that occurs most frequently in the array.
+What if there are multiple items that occur the same number of time?
     - return all of them (in an array)
-    - what if all items occur the same number of times?
-      - return empty array
+what if all items occur the same number of times?
+    - return empty array
 */
 
 const nums1 = [];

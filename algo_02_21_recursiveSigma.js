@@ -1,5 +1,10 @@
-/*
-  Recursively sum an arr of ints
+/**
+ * Add params if needed for recursion
+ * Recursively sums the given array.
+ * - Time: O(?).
+ * - Space: O(?).
+ * @param {Array<number>} nums
+ * @returns {number} The sum of the given nums.
 */
 
 const nums1 = [1, 2, 3];
@@ -11,22 +16,16 @@ const expected2 = 1;
 const nums3 = [];
 const expected3 = 0;
 
-/**
- * Add params if needed for recursion
- * Recursively sums the given array.
- * - Time: O(?).
- * - Space: O(?).
- * @param {Array<number>} nums
- * @returns {number} The sum of the given nums.
- */
-function recursiveSumArr (nums, i = 0) {
+function recursiveSumArr (nums, idx = 0) {
     if (nums.length === 0) {
         return 0;
+    };
+
+    if (idx === nums.length - 1) {
+        return nums[idx];
+
     }
-    if (i === nums.length - 1) {
-        return nums[i];
-    }
-    return nums[i] + recursiveSumArr(nums, i += 1);
+    return nums[idx] + recursiveSumArr(nums, idx += 1);
 }
 
 console.log(recursiveSumArr(nums1));
@@ -35,11 +34,13 @@ console.log(recursiveSumArr(nums3));
 
 /*****************************************************************************/
 
-/*
-Recursive Sigma
-Input: integer
-Output: sum of integers from 1 to Input integer
-*/
+/**
+ * Recursively sum the given int and every previous positive int.
+ * - Time: O(?).
+ * - Space: O(?).
+ * @param {number} num
+ * @returns {number}
+ */
 
 const two_num1 = 5;
 const two_expected1 = 15;
@@ -52,18 +53,13 @@ const two_expected2 = 3;
 const two_num3 = -1;
 const two_expected3 = 0;
 
-/**
- * Recursively sum the given int and every previous positive int.
- * - Time: O(?).
- * - Space: O(?).
- * @param {number} num
- * @returns {number}
- */
 function recursiveSigma (num) {
     num = Math.floor(num);
-    if (num <= 0) {
+
+    if (num < 1) {
         return 0;
     }
+
     return num + recursiveSigma(num - 1);
 }
 

@@ -32,16 +32,16 @@ const expected6 = 21;
  * @returns {number} The fibonacci number at the given position.
  */
 
-function fibonacci (num) {
+function recursiveFibonacci (num) {
     if (num === 0 || num === 1) {
         return num;
     };
-    return fibonacci(num - 1) + fibonacci(num - 2);
+    return recursiveFibonacci(num - 1) + recursiveFibonacci(num - 2);
 }
 
-console.log(fibonacci(num1))
-console.log(fibonacci(num2))
-console.log(fibonacci(num3))
-console.log(fibonacci(num4))
-console.log(fibonacci(num5))
-console.log(fibonacci(num6))
+console.log(recursiveFibonacci(num1))
+console.log(recursiveFibonacci(num2))
+console.log(recursiveFibonacci(num3))
+console.log(recursiveFibonacci(num4))
+console.log(recursiveFibonacci(num5))
+console.log(recursiveFibonacci(num6))

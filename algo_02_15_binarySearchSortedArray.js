@@ -24,13 +24,10 @@ function binarySearch (sortedNums, searchNum) {
     let startIdx = 0;
     let endIdx = sortedNums.length - 1;
 
-    while (startIdx < endIdx) {
+    while (startIdx <= endIdx) {
         let midIdx = Math.floor((startIdx + endIdx) / 2);
 
-        if (searchNum === sortedNums[startIdx] || searchNum === sortedNums[endIdx]) {
-            return true;
-        }
-        else if (searchNum === sortedNums[midIdx]) {
+        if (searchNum === sortedNums[midIdx]) {
             return true;
         }
         else if (searchNum > sortedNums[midIdx]) {

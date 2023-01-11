@@ -11,6 +11,14 @@ const expected1 = ["1000", "1001", "1100", "1101"];
 const str2 = "10?";
 const expected2 = ["100", "101"];
 
+const str3 = "1???0";
+const expected3 = [
+    '10000', '10010',
+    '10100', '10110',
+    '11000', '11010',
+    '11100', '11110'
+]
+
 // output list order does not matter
 
 /**
@@ -22,37 +30,24 @@ const expected2 = ["100", "101"];
 * @param {string} str The string containing to expand.
 * @returns {Array<string>} The expanded versions of the given string.
 */
-function recursiveBinaryStringExpansion (str, resultArr = [], i = 0) {
-    // for (let i = 0; i < str.length; i++) {
-    //     let currentChar = str[i];
-    //     if (currentChar === "?") {
-    //         newStr = str.replace(currentChar, "0")
-    //         recursiveBinaryStringExpansion(newStr, resultArr);
-    //         newStr = str.replace(currentChar, "1")
-    //         recursiveBinaryStringExpansion(newStr, resultArr);
-    //     }
-    // }
-    // console.log(newStr);
-    // resultArr.push(newStr);
-    // return resultArr;
-    console.log(str);
-    let currentChar = str[i];
-    if (i === str.length) {
-        resultArr.push(str);
-        return resultArr;
-    }
+function recursiveBinaryStringExpansion (str, resultArr = []) {
+    let newStr = str;
 
-    if (currentChar === "?") {
-        currentChar = "0";
-        recursiveBinaryStringExpansion(str, resultArr, i + 1);
-        currentChar = "1";
-        recursiveBinaryStringExpansion(str, resultArr, i + 1);
-        // currentChar = "?";
+    for (let i = 0; i < str.length; i++) {
+        let currentChar = str[i];
+        if (currentChar === "?") {
+            newStr = str.replace(currentChar, "0")
+            recursiveBinaryStringExpansion(newStr, resultArr);
+            newStr = str.replace(currentChar, "1")
+            recursiveBinaryStringExpansion(newStr, resultArr);
+        }
     }
-    else {
-        recursiveBinaryStringExpansion(str, resultArr, i + 1);
-    }
+    if (!resultArr.includes(newStr)) {
+        resultArr.push(newStr);
+    };
+    return resultArr;
 };
 
 console.log(recursiveBinaryStringExpansion(str1));
 console.log(recursiveBinaryStringExpansion(str2));
+console.log(recursiveBinaryStringExpansion(str3));

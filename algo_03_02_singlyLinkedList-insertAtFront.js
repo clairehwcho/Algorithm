@@ -14,17 +14,17 @@ class SinglyLinkedList {
     }
 
     insertAtBack (data) {
-        var newNode = new ListNode(data);
+        let newNode = new ListNode(data);
 
-        if (this.isEmpty()) {
+        if (this.head === null) { // or if (this.isEmpty()) {
             this.head = newNode;
             return this;
-        }
+        };
 
-        var runner = this.head;
+        let runner = this.head;
         while (runner.next !== null) {
             runner = runner.next;
-        }
+        };
 
         runner.next = newNode;
 
@@ -46,7 +46,19 @@ class SinglyLinkedList {
 
     insertAtBackMany (vals) {
         for (const item of vals) {
-            this.insertAtBack(item);
+            let newNode = new ListNode(item);
+
+            if (this.head === null) {
+                this.head = newNode;
+            }
+            else {
+                let runner = this.head;
+                while (runner.next !== null) {
+                    runner = runner.next;
+                }
+                runner.next = newNode;
+            };
+            // or this.insertAtBack(item);
         }
         return this;
     }
@@ -61,32 +73,51 @@ class SinglyLinkedList {
         }
         return arr;
     }
-
-    // ==============================================================
-    // DAY 2
-    // ==============================================================
+    /* ****************************************************** */
 
     /**
-     * Creates a new node with the given data and inserts that node at the front
-     * of this list.
+     * Create a new node with the given data and insert that node at the front of this list.
      * - Time: (?).
      * - Space: (?).
      * @param {any} data The data for the new node.
      * @returns {SinglyLinkedList} This list.
      */
     insertAtFront (data) {
-        var newNode = new ListNode(data);
+        let newNode = new ListNode(data);
 
-        if (this.isEmpty()) {
+        if (this.head === null) {
             this.head = newNode;
             return this;
         }
-
         else {
             newNode.next = this.head;
-            this.head = newNode;
         }
-        return this.head
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var newNode = new ListNode(data);
+
+        // if (this.isEmpty()) {
+        //     this.head = newNode;
+        //     return this;
+        // }
+
+        // else {
+        //     newNode.next = this.head;
+        //     this.head = newNode;
+        // }
+        // return this.head
     }
 
 

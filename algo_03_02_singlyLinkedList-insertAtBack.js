@@ -11,11 +11,12 @@ class SinglyLinkedList {
     }
 
     /**
-     * Determines if this list is empty.
+     * Determine if this list is empty.
      * - Time: O(?).
      * - Space: O(?).
-     * @returns {boolean}
+     * @returns { boolean }
      */
+
     isEmpty () {
         return this.head === null;
     }
@@ -27,31 +28,27 @@ class SinglyLinkedList {
      * @param {any} data The data to be added to the new node.
      * @returns {SinglyLinkedList} This list.
      */
+
     insertAtBack (data) {
-        // Make a new node using the data.
         let newNode = new ListNode(data);
 
-        // If the list is empty, set the head to the node and return the list.
-        if (this.isEmpty()) {
-            // or if (this.head === null){
+        if (this.head === null) { // or if (this.isEmpty()) {
             this.head = newNode;
-        }
-        else {
-            // If the list is not empty, loop until the end of the list.
-            let runner = this.head;
-            while (runner.next != null) {
-                runner = runner.next;
-            }
+            return this;
+        };
 
-            // Add the new node to the end of the list the return the list.
-            runner.next = newNode;
-        }
+        let runner = this.head;
+        while (runner.next !== null) {
+            runner = runner.next;
+        };
+
+        runner.next = newNode;
 
         return this;
-    }
+    };
 
     /**
-     * Creates a new node with the given data and inserts it at the back of this list.
+     * Create a new node with the given data and inserts it at the back of this list.
      * - Time: O(?).
      * - Space: O(?).
      * @param {any} data The data to be added to the new node.
@@ -59,20 +56,22 @@ class SinglyLinkedList {
      *    or null when the end of the list has been reached.
      * @returns {SinglyLinkedList} This list.
      */
-    insertAtBackRecursive (data, runner = this.head) {
-        let newNode = new ListNode(data);
 
-        if (runner === null) {
-            runner = newNode;
-        }
-        else {
-            runner.next = insertAtBackRecursive(data, runner.next)
+    insertAtBackRecursive (data, runner = this.head) {
+        if (this.head === null) { // of if (this.isEmpty()) {
+            this.head = new ListNode(data);
+            return this;
         };
-        return this;
+
+        if (runner.next === null) {
+            runner.next = new ListNode(data);
+            return this;
+        };
+        return this.insertAtBackRecursive(data, runner.next);
     }
 
     /**
-     * Calls insertAtBack on each item of the given array.
+     * Insert an array at the back of this list.
      * - Time: O(n * m) n = list length, m = arr.length.
      * - Space: O(1) constant.
      * @param {Array<any>} vals The data for each new node.
@@ -80,24 +79,25 @@ class SinglyLinkedList {
      */
     insertAtBackMany (vals) {
         for (const item of vals) {
-            this.insertAtBack(item);
-            // let newNode = new ListNode(item);
-            // if (this.head === null) {
-            //     this.head = newNode;
-            // }
-            // else {
-            //     let runner = this.head;
-            //     while (runner.next != null) {
-            //         runner = runner.next;
-            //     }
-            //     runner.next = newNode;
-            // }
+            let newNode = new ListNode(item);
+
+            if (this.head === null) {
+                this.head = newNode;
+            }
+            else {
+                let runner = this.head;
+                while (runner.next !== null) {
+                    runner = runner.next;
+                }
+                runner.next = newNode;
+            };
+            // or this.insertAtBack(item);
         }
         return this;
-    }
+    };
 
     /**
-     * Converts this list into an array containing the data of each node.
+     * Convert this list into an array containing the data of each node.
      * - Time: O(n) linear.
      * - Space: O(n).
      * @returns {Array<any>} An array of each node's data.
@@ -111,38 +111,45 @@ class SinglyLinkedList {
             runner = runner.next;
         }
         return arr;
-    }
+    };
 }
 
 /* ****************************************************** */
 const emptyList = new SinglyLinkedList();
-
-const singleNodeList = emptyList.insertAtBackMany([1, 2]);
-
-const biNodeList = emptyList.insert
+const isEmpty = emptyList.isEmpty();
+const singleNodeList = new SinglyLinkedList().insertAtBack([1]);
+const recursiveSingleNodeList = new SinglyLinkedList().insertAtBackRecursive([1]);
+const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
+const firstThreeNodeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
+const secondThreeNodeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
+const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
+    -5, -10, 4, -3, 6, 1, -7, -2,
+]);
 
 console.log(emptyList);
+console.log(emptyList.toArr());
+console.log(isEmpty);
 console.log(singleNodeList);
+console.log(singleNodeList.toArr());
+console.log(recursiveSingleNodeList);
+console.log(recursiveSingleNodeList.toArr());
+console.log(biNodeList);
+console.log(biNodeList.toArr());
+console.log(firstThreeNodeList);
+console.log(firstThreeNodeList.toArr());
+console.log(secondThreeNodeList);
+console.log(secondThreeNodeList.toArr());
+console.log(unorderedNodeList);
+console.log(unorderedNodeList.toArr());
 
-// const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
-// const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
-// const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
-// const secondThreeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
-// const unorderedList = new SinglyLinkedList().insertAtBackMany([
-//     -5, -10, 4, -3, 6, 1, -7, -2,
-// ]);
+// Connect node 4 to node 1, back to head
+const perfectLoopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
+perfectLoopList.head.next.next.next = perfectLoopList.head;
 
-/* node 4 connects to node 1, back to head */
-      // const perfectLoopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
-      // perfectLoopList.head.next.next.next = perfectLoopList.head;
+console.log(perfectLoopList);
 
-/* node 4 connects to node 2 */
-      // const loopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
-      // loopList.head.next.next.next = loopList.head.next;
+// Connect noe 4 to node 2
+const loopList = new SinglyLinkedList().insertAtBackMany([1, 2, 3, 4]);
+loopList.head.next.next.next = loopList.head.next;
 
-      // const sortedDupeList = new SinglyLinkedList().insertAtBackMany([
-      //   1, 1, 1, 2, 3, 3, 4, 5, 5,
-      // ]);
-
-      // Print your list like so:
-      // console.log(firstThreeList.toArr());
+console.log(loopList);

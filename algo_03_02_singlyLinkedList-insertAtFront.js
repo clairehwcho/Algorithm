@@ -87,39 +87,13 @@ class SinglyLinkedList {
 
         if (this.head === null) {
             this.head = newNode;
-            return this;
         }
         else {
             newNode.next = this.head;
+            this.head = newNode;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // var newNode = new ListNode(data);
-
-        // if (this.isEmpty()) {
-        //     this.head = newNode;
-        //     return this;
-        // }
-
-        // else {
-        //     newNode.next = this.head;
-        //     this.head = newNode;
-        // }
-        // return this.head
+        return this;
     }
-
 
     /**
      * Removes the first node of this list.
@@ -128,16 +102,15 @@ class SinglyLinkedList {
      * @returns {any} The data from the removed node.
      */
     removeHead () {
-        if (this.isEmpty()) {
+        if (this.head === null) {
             return null;
         }
-
-        var tempNode = this.head.next;
-        this.head = tempNode;
-        return this.head;
+        else {
+            this.head = this.head.next;
+            return this;
+        }
     }
 
-    // EXTRA
     /**
      * Calculates the average of this list.
      * - Time: (?).
@@ -145,39 +118,39 @@ class SinglyLinkedList {
      * @returns {number|NaN} The average of the node's data.
      */
     average () {
-        if (this.isEmpty()) {
+        if (this.head === null) {
             return 0;
         }
-        var sum = 0
-        var count = 0;
-        var runner = this.head
-        while (runner != null) {
-            count++;
+
+        let sum = 0;
+        let count = 0;
+        let runner = this.head;
+        while (runner !== null) {
             sum += runner.data;
+            count++;
             runner = runner.next;
         }
-        return sum / count;
+
+        let average = sum / count
+
+        return average;
     }
 }
 
-/*******************************************************************
-Multiple test lists already constructed to test your methods on.
-Below commented code depends on insertAtBack method to be completed,
-after completing it, uncomment the code.
-*/
+/* ****************************************************** */
 const emptyList = new SinglyLinkedList();
-
-const singleNodeList = new SinglyLinkedList().insertAtBackMany([1]);
+const isEmpty = emptyList.isEmpty();
+const singleNodeList = new SinglyLinkedList().insertAtBack([1]);
+const recursiveSingleNodeList = new SinglyLinkedList().insertAtBackRecursive([1]);
 const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
-const firstThreeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
-const secondThreeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
-const unorderedList = new SinglyLinkedList().insertAtBackMany([
+const firstThreeNodeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
+const secondThreeNodeList = new SinglyLinkedList().insertAtBackMany([4, 5, 6]);
+const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
     -5, -10, 4, -3, 6, 1, -7, -2,
 ]);
 
-// Print your list like so:
-// console.log(firstThreeList.toArr());
-// console.log(firstThreeList.insertAtFront(3));
-console.log(firstThreeList.removeHead());
-// console.log(firstThreeList.average());
-
+console.log(emptyList.insertAtFront(3).toArr());
+console.log(biNodeList.insertAtFront(3).toArr());
+console.log(singleNodeList.removeHead().toArr());
+console.log(firstThreeNodeList.removeHead().toArr());
+console.log(secondThreeNodeList.average());

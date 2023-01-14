@@ -14,47 +14,47 @@ class SinglyLinkedList {
     }
 
     insertAtBack (data) {
-        let newTail = new ListNode(data);
+        let newNode = new ListNode(data);
 
         if (this.head === null) { // or if (this.isEmpty()) {
-            this.head = newTail;
+            this.head = newNode;
         }
         else {
-            let runner = this.head;
-            while (runner.next !== null) {
-                runner = runner.next;
+            let currentNode = this.head;
+            while (currentNode.next !== null) {
+                currentNode = currentNode.next;
             };
-            runner.next = newTail;
+            currentNode.next = newNode;
         }
         return this;
     }
 
-    insertAtBackRecursive (data, runner = this.head) {
+    insertAtBackRecursive (data, currentNode = this.head) {
         if (this.head === null) { // or if (this.isEmpty()) {
             this.head = new ListNode(data);
             return this;
         }
 
-        if (runner.next === null) {
-            runner.next = new ListNode(data);
+        if (currentNode.next === null) {
+            currentNode.next = new ListNode(data);
             return this;
         }
-        return this.insertAtBackRecursive(data, runner.next);
+        return this.insertAtBackRecursive(data, currentNode.next);
     }
 
     insertAtBackMany (vals) {
         for (const item of vals) {
-            let newTail = new ListNode(item);
+            let newNode = new ListNode(item);
 
             if (this.head === null) {
-                this.head = newTail;
+                this.head = newNode;
             }
             else {
-                let runner = this.head;
-                while (runner.next !== null) {
-                    runner = runner.next;
+                let currentNode = this.head;
+                while (currentNode.next !== null) {
+                    currentNode = currentNode.next;
                 }
-                runner.next = newTail;
+                currentNode.next = newNode;
             };
             // or this.insertAtBack(item);
         }
@@ -63,11 +63,11 @@ class SinglyLinkedList {
 
     toArr () {
         const arr = [];
-        let runner = this.head;
+        let currentNode = this.head;
 
-        while (runner) {
-            arr.push(runner.data);
-            runner = runner.next;
+        while (currentNode) {
+            arr.push(currentNode.data);
+            currentNode = currentNode.next;
         }
         return arr;
     }
@@ -123,11 +123,11 @@ class SinglyLinkedList {
 
         let sum = 0;
         let count = 0;
-        let runner = this.head;
-        while (runner !== null) {
-            sum += runner.data;
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            sum += currentNode.data;
             count++;
-            runner = runner.next;
+            currentNode = currentNode.next;
         }
 
         let average = sum / count
@@ -149,7 +149,12 @@ const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
 ]);
 
 console.log(emptyList.insertAtFront(3).toArr());
+// [ 3 ]
 console.log(biNodeList.insertAtFront(3).toArr());
+// [ 3, 1, 2 ]
 console.log(singleNodeList.removeHead());
+// 1
 console.log(firstThreeNodeList.removeHead());
+// 1
 console.log(secondThreeNodeList.average());
+// 5

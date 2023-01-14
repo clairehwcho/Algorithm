@@ -14,47 +14,47 @@ class SinglyLinkedList {
     }
 
     insertAtBack (data) {
-        let newTail = new ListNode(data);
+        let newNode = new ListNode(data);
 
         if (this.head === null) { // or if (this.isEmpty()) {
-            this.head = newTail;
+            this.head = newNode;
         }
         else {
-            let runner = this.head;
-            while (runner.next !== null) {
-                runner = runner.next;
+            let currentNode = this.head;
+            while (currentNode.next !== null) {
+                currentNode = currentNode.next;
             };
-            runner.next = newTail;
+            currentNode.next = newNode;
         }
         return this;
     }
 
-    insertAtBackRecursive (data, runner = this.head) {
+    insertAtBackRecursive (data, currentNode = this.head) {
         if (this.head === null) { // or if (this.isEmpty()) {
             this.head = new ListNode(data);
             return this;
         }
 
-        if (runner.next === null) {
-            runner.next = new ListNode(data);
+        if (currentNode.next === null) {
+            currentNode.next = new ListNode(data);
             return this;
-        }
-        return this.insertAtBackRecursive(data, runner.next);
+        } newTail
+        return this.insertAtBackRecursive(data, currentNode.next);
     }
 
     insertAtBackMany (vals) {
         for (const item of vals) {
-            let newTail = new ListNode(item);
+            let newNode = new ListNode(item);
 
             if (this.head === null) {
-                this.head = newTail;
+                this.head = newNode;
             }
             else {
-                let runner = this.head;
-                while (runner.next !== null) {
-                    runner = runner.next;
+                let currentNode = this.head;
+                while (currentNode.next !== null) {
+                    currentNode = currentNode.next;
                 }
-                runner.next = newTail;
+                currentNode.next = newNode;
             };
             // or this.insertAtBack(item);
         }
@@ -63,11 +63,11 @@ class SinglyLinkedList {
 
     toArr () {
         const arr = [];
-        let runner = this.head;
+        let currentNode = this.head;
 
-        while (runner) {
-            arr.push(runner.data);
-            runner = runner.next;
+        while (currentNode) {
+            arr.push(currentNode.data);
+            currentNode = currentNode.next;
         }
         return arr;
     }
@@ -103,11 +103,11 @@ class SinglyLinkedList {
 
         let sum = 0;
         let count = 0;
-        let runner = this.head;
-        while (runner !== null) {
-            sum += runner.data;
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            sum += currentNode.data;
             count++;
-            runner = runner.next;
+            currentNode = currentNode.next;
         }
 
         let average = sum / count
@@ -116,28 +116,35 @@ class SinglyLinkedList {
     }
 
     removeBack () {
-        if (this.head === null) {
+        let currentNode = this.head;
+        let prevNode = null;
+
+        if (currentNode === null) {
             return null;
         }
-        else {
-            let runner = this.head;
-            while (runner.next !== null) {
-                runner = runner.next
-            }
-            let removedData = runner.data;
-            runner = null;
-            return removedData;
+
+        if (currentNode.next === null) {
+            this.head = null;
         }
+        else {
+            while (currentNode.next !== null) {
+                prevNode = currentNode;
+                currentNode = currentNode.next
+            }
+            prevNode.next = null;
+        }
+        let removedData = currentNode.data;
+        return removedData;
     }
 
     contains (val) {
-        let runner = this.head;
+        let currentNode = this.head;
 
-        while (runner !== null) {
-            if (runner.data === val) {
+        while (currentNode !== null) {
+            if (currentNode.data === val) {
                 return true;
             }
-            runner = runner.next;
+            currentNode = currentNode.next;
         }
         return false;
     }
@@ -152,19 +159,19 @@ class SinglyLinkedList {
         return this.containsRecursive(val, current.next);
     }
 
-    recursiveMax (runner = this.head, maxNode = this.head) {
+    recursiveMax (currentNode = this.head, maxNode = this.head) {
         if (this.head === null) {
             return null;
         }
 
-        if (runner.next === null) {
+        if (currentNode.next === null) {
             return maxNode.data;
         }
 
-        if (runner.data > maxNode.data) {
-            maxNode = runner;
+        if (currentNode.data > maxNode.data) {
+            maxNode = currentNode;
         }
-        return this.recursiveMax(runner.next, maxNode);
+        return this.recursiveMax(currentNode.next, maxNode);
     }
 
 
@@ -178,16 +185,16 @@ class SinglyLinkedList {
      *    second to last node.
      */
     secondToLast () {
-        let runner = this.head;
+        let currentNode = this.head;
 
-        if (runner === null || runner.next === null) {
+        if (currentNode === null || currentNode.next === null) {
             return null;
         }
 
-        while (runner.next.next !== null) {
-            runner = runner.next;
+        while (currentNode.next.next !== null) {
+            currentNode = currentNode.next;
         }
-        let secondToLastNodeData = runner.data;
+        let secondToLastNodeData = currentNode.data;
         return secondToLastNodeData;
     };
 
@@ -200,32 +207,24 @@ class SinglyLinkedList {
      * @returns {boolean} Indicates if a node was removed or not.
      */
     removeVal (val) {
-        let runner = this.head;
+        let currentNode = this.head;
+        let prevNode = null;
         let isRemoved = false;
 
-        if (this.head === null) {
-            return false;
-        }
-
-        if (this.head.data === val) {
-            this.head = this.head.next;
-            isRemoved = true;
-        }
-        else {
-            while (runner !== null) {
-                if (runner.data === val) {
-                    let newNextNode = runner.next;
-                    runner = newNextNode;
-                    isRemoved = true;
-                }
-                else {
-                    runner = runner.next;
-                }
+        while (currentNode !== null) {
+            if (currentNode.data === val && prevNode === null) {
+                this.head = currentNode.next
+                isRemoved = true;
             }
+            else if (currentNode.data === val) {
+                prevNode.next = currentNode.next;
+                isRemoved = true;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
 
         if (isRemoved === true) {
-            console.log(this.toArr());
             return true;
         }
         return false;
@@ -240,19 +239,24 @@ class SinglyLinkedList {
      * @returns {boolean} To indicate whether the node was pre-pended or not.
      */
     prepend (newVal, targetVal) {
-        let runner = this.head;
-        let isPrepended = false;
+        let currentNode = this.head;
+        let prevNode = null;
         let newNode = new ListNode(newVal);
+        let isPrepended = false;
 
-        while (runner !== null) {
-            if (runner.data === targetVal) {
-                newNode.next = runner;
-                runner = newNode.next.next;
+        while (currentNode !== null) {
+            if (currentNode.data === targetVal && prevNode === null) {
+                newNode.next = currentNode;
+                this.head = newNode;
                 isPrepended = true;
             }
-            else {
-                runner = runner.next;
+            else if (currentNode.data === targetVal) {
+                newNode.next = currentNode;
+                prevNode.next = newNode;
+                isPrepended = true;
             }
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
 
         if (isPrepended === true) {
@@ -275,11 +279,21 @@ const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
     -5, -10, 4, -3, 6, 1, -7, -2,
 ]);
 
-// console.log(emptyList.secondToLast());
-// console.log(singleNodeList.secondToLast());
-// console.log(firstThreeNodeList.secondToLast());
+console.log(emptyList.secondToLast());
+// null
+console.log(singleNodeList.secondToLast());
+// null
+console.log(firstThreeNodeList.secondToLast());
+// 2
 console.log(emptyList.removeVal(1));
+// false
 console.log(firstThreeNodeList.removeVal(2));
+// true
 console.log(firstThreeNodeList.removeVal(4));
-// console.log(emptyList.prepend(100, 5));
-// console.log(secondThreeNodeList.prepend(100, 5));
+// false
+console.log(emptyList.prepend(100, 5));
+// false
+console.log(singleNodeList.prepend(100, 1));
+// true
+console.log(secondThreeNodeList.prepend(100, 5));
+// true

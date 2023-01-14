@@ -30,22 +30,20 @@ class SinglyLinkedList {
      */
 
     insertAtBack (data) {
-        let newNode = new ListNode(data);
+        let newTail = new ListNode(data);
 
         if (this.head === null) { // or if (this.isEmpty()) {
-            this.head = newNode;
-            return this;
-        };
-
-        let runner = this.head;
-        while (runner.next !== null) {
-            runner = runner.next;
-        };
-
-        runner.next = newNode;
-
+            this.head = newTail;
+        }
+        else {
+            let runner = this.head;
+            while (runner.next !== null) {
+                runner = runner.next;
+            };
+            runner.next = newTail;
+        }
         return this;
-    };
+    }
 
     /**
      * Create a new node with the given data and inserts it at the back of this list.
@@ -58,7 +56,7 @@ class SinglyLinkedList {
      */
 
     insertAtBackRecursive (data, runner = this.head) {
-        if (this.head === null) { // of if (this.isEmpty()) {
+        if (this.head === null) { // or if (this.isEmpty()) {
             this.head = new ListNode(data);
             return this;
         };
@@ -79,22 +77,22 @@ class SinglyLinkedList {
      */
     insertAtBackMany (vals) {
         for (const item of vals) {
-            let newNode = new ListNode(item);
+            let newTail = new ListNode(item);
 
             if (this.head === null) {
-                this.head = newNode;
+                this.head = newTail;
             }
             else {
                 let runner = this.head;
                 while (runner.next !== null) {
                     runner = runner.next;
                 }
-                runner.next = newNode;
+                runner.next = newTail;
             };
             // or this.insertAtBack(item);
         }
         return this;
-    };
+    }
 
     /**
      * Convert this list into an array containing the data of each node.

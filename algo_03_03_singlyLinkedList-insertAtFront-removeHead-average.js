@@ -14,25 +14,23 @@ class SinglyLinkedList {
     }
 
     insertAtBack (data) {
-        let newNode = new ListNode(data);
+        let newTail = new ListNode(data);
 
         if (this.head === null) { // or if (this.isEmpty()) {
-            this.head = newNode;
-            return this;
-        };
-
-        let runner = this.head;
-        while (runner.next !== null) {
-            runner = runner.next;
-        };
-
-        runner.next = newNode;
-
+            this.head = newTail;
+        }
+        else {
+            let runner = this.head;
+            while (runner.next !== null) {
+                runner = runner.next;
+            };
+            runner.next = newTail;
+        }
         return this;
     }
 
     insertAtBackRecursive (data, runner = this.head) {
-        if (this.isEmpty()) {
+        if (this.head === null) { // or if (this.isEmpty()) {
             this.head = new ListNode(data);
             return this;
         }
@@ -46,17 +44,17 @@ class SinglyLinkedList {
 
     insertAtBackMany (vals) {
         for (const item of vals) {
-            let newNode = new ListNode(item);
+            let newTail = new ListNode(item);
 
             if (this.head === null) {
-                this.head = newNode;
+                this.head = newTail;
             }
             else {
                 let runner = this.head;
                 while (runner.next !== null) {
                     runner = runner.next;
                 }
-                runner.next = newNode;
+                runner.next = newTail;
             };
             // or this.insertAtBack(item);
         }
@@ -83,14 +81,14 @@ class SinglyLinkedList {
      * @returns {SinglyLinkedList} This list.
      */
     insertAtFront (data) {
-        let newNode = new ListNode(data);
+        let newHead = new ListNode(data);
 
         if (this.head === null) {
-            this.head = newNode;
+            this.head = newHead;
         }
         else {
-            newNode.next = this.head;
-            this.head = newNode;
+            newHead.next = this.head;
+            this.head = newHead;
         }
         return this;
     }
@@ -106,8 +104,9 @@ class SinglyLinkedList {
             return null;
         }
         else {
+            let oldHead = this.head;
             this.head = this.head.next;
-            return this;
+            return oldHead.data;
         }
     }
 
@@ -119,7 +118,7 @@ class SinglyLinkedList {
      */
     average () {
         if (this.head === null) {
-            return 0;
+            return NaN;
         }
 
         let sum = 0;
@@ -140,7 +139,7 @@ class SinglyLinkedList {
 /* ****************************************************** */
 const emptyList = new SinglyLinkedList();
 const isEmpty = emptyList.isEmpty();
-const singleNodeList = new SinglyLinkedList().insertAtBack([1]);
+const singleNodeList = new SinglyLinkedList().insertAtBack(1);
 const recursiveSingleNodeList = new SinglyLinkedList().insertAtBackRecursive([1]);
 const biNodeList = new SinglyLinkedList().insertAtBackMany([1, 2]);
 const firstThreeNodeList = new SinglyLinkedList().insertAtBackMany([1, 2, 3]);
@@ -151,6 +150,6 @@ const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
 
 console.log(emptyList.insertAtFront(3).toArr());
 console.log(biNodeList.insertAtFront(3).toArr());
-console.log(singleNodeList.removeHead().toArr());
-console.log(firstThreeNodeList.removeHead().toArr());
+console.log(singleNodeList.removeHead());
+console.log(firstThreeNodeList.removeHead());
 console.log(secondThreeNodeList.average());

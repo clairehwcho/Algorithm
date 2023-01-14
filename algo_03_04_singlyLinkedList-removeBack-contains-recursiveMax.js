@@ -115,6 +115,14 @@ class SinglyLinkedList {
         return average;
     }
 
+    /* ****************************************************** */
+
+    /**
+     * Removes the last node of this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @returns {any} The data from the node that was removed.
+     */
     removeBack () {
         if (this.head === null) {
             return null;
@@ -130,6 +138,13 @@ class SinglyLinkedList {
         }
     }
 
+    /**
+     * Determines whether or not the given search value exists in this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} val The data to search for in the nodes of this list.
+     * @returns {boolean}
+     */
     contains (val) {
         let runner = this.head;
 
@@ -142,6 +157,15 @@ class SinglyLinkedList {
         return false;
     }
 
+    /**
+     * Determines whether or not the given search value exists in this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {any} val The data to search for in the nodes of this list.
+     * @param {?ListNode} current The current node during the traversal of this list
+     *    or null when the end of the list has been reached.
+     * @returns {boolean}
+     */
     containsRecursive (val, current = this.head) {
         if (current === null) {
             return false;
@@ -152,6 +176,15 @@ class SinglyLinkedList {
         return this.containsRecursive(val, current.next);
     }
 
+    /**
+     * Recursively finds the maximum integer data of the nodes in this list.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {ListNode} runner The start or current node during traversal,
+     *    or null when the end of the list is reached.
+     * @param {ListNode} maxNode Keeps track of the node that contains the current max integer as it's data.
+     * @returns {?number} The max int or null if none.
+     */
     recursiveMax (runner = this.head, maxNode = this.head) {
         if (this.head === null) {
             return null;
@@ -166,102 +199,8 @@ class SinglyLinkedList {
         }
         return this.recursiveMax(runner.next, maxNode);
     }
-
-
-    /* ****************************************************** */
-
-    /**
-     * Retrieves the data of the second to last node in this list.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @returns {any} The data of the second to last node or null if there is no
-     *    second to last node.
-     */
-    secondToLast () {
-        let runner = this.head;
-
-        if (runner === null || runner.next === null) {
-            return null;
-        }
-
-        while (runner.next.next !== null) {
-            runner = runner.next;
-        }
-        let secondToLastNodeData = runner.data;
-        return secondToLastNodeData;
-    };
-
-    /**
-     * Removes the node that has the matching given val as it's data.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {any} val The value to compare to the node's data to find the
-     *    node to be removed.
-     * @returns {boolean} Indicates if a node was removed or not.
-     */
-    removeVal (val) {
-        let runner = this.head;
-        let isRemoved = false;
-
-        if (this.head === null) {
-            return false;
-        }
-
-        if (this.head.data === val) {
-            this.head = this.head.next;
-            isRemoved = true;
-        }
-        else {
-            while (runner !== null) {
-                if (runner.data === val) {
-                    let newNextNode = runner.next;
-                    runner = newNextNode;
-                    isRemoved = true;
-                }
-                else {
-                    runner = runner.next;
-                }
-            }
-        }
-
-        if (isRemoved === true) {
-            console.log(this.toArr());
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Inserts a new node before a node that has the given value as its data.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {any} newVal The value to use for the new node that is being added.
-     * @param {any} targetVal The value to use to find the node that the newVal should be inserted in front of.
-     * @returns {boolean} To indicate whether the node was pre-pended or not.
-     */
-    prepend (newVal, targetVal) {
-        let runner = this.head;
-        let isPrepended = false;
-        let newNode = new ListNode(newVal);
-
-        while (runner !== null) {
-            if (runner.data === targetVal) {
-                newNode.next = runner;
-                runner = newNode.next.next;
-                isPrepended = true;
-            }
-            else {
-                runner = runner.next;
-            }
-        }
-
-        if (isPrepended === true) {
-            console.log(this.toArr());
-            return true;
-        }
-        return false;
-    }
 }
+
 
 /* ****************************************************** */
 const emptyList = new SinglyLinkedList();
@@ -275,11 +214,8 @@ const unorderedNodeList = new SinglyLinkedList().insertAtBackMany([
     -5, -10, 4, -3, 6, 1, -7, -2,
 ]);
 
-// console.log(emptyList.secondToLast());
-// console.log(singleNodeList.secondToLast());
-// console.log(firstThreeNodeList.secondToLast());
-console.log(emptyList.removeVal(1));
-console.log(firstThreeNodeList.removeVal(2));
-console.log(firstThreeNodeList.removeVal(4));
-// console.log(emptyList.prepend(100, 5));
-// console.log(secondThreeNodeList.prepend(100, 5));
+console.log(firstThreeNodeList.removeBack());
+console.log(firstThreeNodeList.contains(3));
+console.log(firstThreeNodeList.contains(4));
+console.log(firstThreeNodeList.containsRecursive(2));
+console.log(unorderedNodeList.recursiveMax());

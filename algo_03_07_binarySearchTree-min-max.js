@@ -1,40 +1,13 @@
-/**
- * Class to represent a Node in a Binary Search Tree (BST).
- */
 class BSTNode {
-    /**
-     * Constructs a new instance of a BST node.
-     * @param {number} data The integer to store in the node.
-     */
     constructor (data) {
         this.data = data;
-        /**
-         * These properties are how this node is connected to other nodes to form
-         * the tree. Similar to .next in a SinglyLinkedList except a BST node can
-         * be connected to two other nodes. To start, new nodes will not be
-         * connected to any other nodes, these properties will be set after
-         * the new node is instantiated.
-         *
-         * @type {BSTNode|null}
-         */
         this.left = null;
-        /** @type {BSTNode|null} */
         this.right = null;
     }
 }
 
-/**
- * Represents an ordered tree of nodes where the data of left nodes are <= to
- * their parent and the data of nodes to the right are > their parent's data.
- */
 class BinarySearchTree {
     constructor () {
-        /**
-         * Just like the head of a linked list, this is the start of our tree which
-         * branches downward from here.
-         *
-         * @type {BSTNode|null}
-         */
         this.root = null;
     }
 
@@ -52,31 +25,31 @@ class BinarySearchTree {
      * Retrieves the smallest integer data from this tree.
      * - Time: O(?).
      * - Space: O(?).
-     * @param {Node} current The node that is currently accessed from the tree as
-     *    the tree is being traversed.
+     * @param {Node} current The node that is currently accessed from the tree
+     *    as the tree is being traversed.
      * @returns {number} The smallest integer from this tree.
      */
     min (current = this.root) {
-        if (this.isEmpty()) {
+        if (current === null) {
             return null;
         }
-        while (current.left) {
-            current = current.left
+
+        while (current.left !== null) {
+            current = current.left;
         }
         return current.data;
-
     }
 
     /**
      * Retrieves the smallest integer data from this tree.
      * - Time: O(?).
      * - Space: O(?).
-     * @param {Node} current The node that is currently accessed from the tree as
-     *    the tree is being traversed.
+     * @param {Node} current The node that is currently accessed from the tree
+     *    as the tree is being traversed.
      * @returns {number} The smallest integer from this tree.
      */
     minRecursive (current = this.root) {
-        if (this.isEmpty()) {
+        if (current === null) {
             return null;
         }
         if (!current.left) {
@@ -89,16 +62,17 @@ class BinarySearchTree {
      * Retrieves the largest integer data from this tree.
      * - Time: O(?).
      * - Space: O(?).
-     * @param {Node} current The node that is currently accessed from the tree as
-     *    the tree is being traversed.
+     * @param {Node} current The node that is currently accessed from the tree
+     *    as the tree is being traversed.
      * @returns {number} The largest integer from this tree.
      */
     max (current = this.root) {
-        if (this.isEmpty()) {
+        if (current === null) {
             return null;
         }
-        while (current.right) {
-            current = current.right
+
+        while (current.right !== null) {
+            current = current.right;
         }
         return current.data;
     }
@@ -107,15 +81,16 @@ class BinarySearchTree {
      * Retrieves the largest integer data from this tree.
      * - Time: O(?).
      * - Space: O(?).
-     * @param {Node} current The node that is currently accessed from the tree as
-     *    the tree is being traversed.
+     * @param {Node} current The node that is currently accessed from the tree
+     *    as the tree is being traversed.
      * @returns {number} The largest integer from this tree.
      */
     maxRecursive (current = this.root) {
-        if (this.isEmpty()) {
+        if (current === null) {
             return null;
         }
-        if (!current.right) {
+
+        if (current.right === null) {
             return current.data;
         }
         return this.maxRecursive(current.right);
@@ -181,28 +156,27 @@ threeLevelTree.root.right.left = new BSTNode(13);
     4    12  18  24  31  44 66  90
 */
 
-console.log("------check isEmpty------");
-console.log(emptyTree.isEmpty());
-cons
-ole.log(twoLevelTree.isEmpty());
+console.log(emptyTree);
+// BinarySearchTree { root: null }
+console.log(oneNodeTree);
+// BinarySearchTree { root: BSTNode { data: 10, left: null, right: null }}
+console.log(twoLevelTree);
+/*
+BinarySearchTree {
+  root: BSTNode {
+    data: 10,
+    left: BSTNode { data: 5, left: null, right: null },
+    right: BSTNode { data: 15, left: null, right: null }
+  }
+}
+*/
 console.log(threeLevelTree.isEmpty());
-
-console.log("------check min------");
-console.log(emptyTree.min());
-console.log(twoLevelTree.min());
+// false
 console.log(threeLevelTree.min());
-
-console.log("------check minrecursive------");
-console.log(emptyTree.minRecursive());
-console.log(twoLevelTree.minRecursive());
+// 2
 console.log(threeLevelTree.minRecursive());
-
-console.log("------check max------");
-console.log(emptyTree.max());
-console.log(twoLevelTree.max());
+// 2
 console.log(threeLevelTree.max());
-
-console.log("------check maxrecursive------");
-console.log(emptyTree.maxRecursive());
-console.log(twoLevelTree.maxRecursive());
+// 15
 console.log(threeLevelTree.maxRecursive());
+// 15

@@ -131,15 +131,6 @@ class BinarySearchTree {
         return range;
     }
 
-    // ****************************************************************************
-
-    /**
-     * Inserts a new node with the given newVal in the right place to preserve the order of this tree.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {number} newVal The data to be added to a new node.
-     * @returns {BinarySearchTree} This tree.
-     */
     insert (newVal) {
         let newNode = new BSTNode(newVal);
 
@@ -168,16 +159,6 @@ class BinarySearchTree {
         }
     }
 
-    /**
-     * Inserts a new node with the given newVal in the right place to preserver
-     * the order of this tree.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {number} newVal The data to be added to a new node.
-     * @param {Node} current The node that is currently accessed from the tree
-     *    as the tree is being traversed.
-     * @returns {BinarySearchTree} This tree.
-     */
     insertRecursive (newVal, current = this.root) {
         let newNode = new BSTNode(newVal);
         if (this.root === null) {
@@ -241,7 +222,8 @@ class BinarySearchTree {
     }
 
     /**
-     * DFS Postorder (Left, Right, CurrNode)
+     * Depth First Search Postorder:
+     * Traverse the left subtree -> traverse the right subtree -> visit root
      * Converts this BST into an array following Depth First Search postorder.
      * Example on the fullTree var:
      * [4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25]
@@ -345,14 +327,24 @@ fullTree
 // // [ 25, 15, 10,  4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ]
 
 
-console.log(emptyTree.toArrInorder());
-console.log(oneNodeTree.toArrInorder());
-console.log(twoLevelTree.toArrInorder());
-console.log(threeLevelTree.toArrInorder());
-console.log(fullTree.toArrInorder());
-// console.log("------check toArrPostorder------")
-// console.log(emptyTree.toArrPostorder());
-// console.log(oneNodeTree.toArrPostorder());
-// console.log(twoLevelTree.toArrPostorder());
-// console.log(threeLevelTree.toArrPostorder());
-// console.log(fullTree.toArrPostorder());
+// console.log(emptyTree.toArrInorder());
+// // []
+// console.log(oneNodeTree.toArrInorder());
+// // [ 10 ]
+// console.log(twoLevelTree.toArrInorder());
+// // [ 5, 10, 15 ]
+// console.log(threeLevelTree.toArrInorder());
+// // [ 5, 2, 6, 10, 15, 13 ]
+// console.log(fullTree.toArrInorder());
+// // [ 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 ]
+
+console.log(emptyTree.toArrPostorder());
+// []
+console.log(oneNodeTree.toArrPostorder());
+// [10]
+console.log(twoLevelTree.toArrPostorder());
+// [ 5, 15, 10 ]
+console.log(threeLevelTree.toArrPostorder());
+// [ 5, 2, 6, 15, 13, 10 ]
+console.log(fullTree.toArrPostorder());
+// [ 15, 10,  4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90, 25 ]

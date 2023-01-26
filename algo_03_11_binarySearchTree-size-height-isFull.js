@@ -181,18 +181,6 @@ class BinarySearchTree {
         }
     }
 
-    // ****************************************************************************
-
-    /**
-     * Depth First Search Preorder:
-     * Visit root -> traverse the left subtree -> traverse the right subtree
-     * Converts this BST into an array following Depth First Search preorder.
-     * Example on the fullTree var:
-     * [25, 15, 10, 4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90]
-     * @param {Node} node The current node during the traversal of this tree.
-     * @param {Array<number>} vals The data that has been visited so far.
-     * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
-     */
     toArrPreorder (node = this.root, vals = []) {
         if (node) {
             vals.push(node.data);
@@ -202,16 +190,6 @@ class BinarySearchTree {
         return vals;
     }
 
-    /**
-     * Depth First Search Inorder:
-     * Traverse the left subtree -> visit root -> traverse the right subtree
-     * Converts this BST into an array following Depth First Search inorder.
-     * Example on the fullTree var:
-     * [4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90]
-     * @param {Node} node The current node during the traversal of this tree.
-     * @param {Array<number>} vals The data that has been visited so far.
-     * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
-     */
     toArrInorder (node = this.root, vals = []) {
         if (node) {
             this.toArrInorder(node.left, vals);
@@ -221,16 +199,6 @@ class BinarySearchTree {
         return vals;
     }
 
-    /**
-     * Depth First Search Postorder:
-     * Traverse the left subtree -> traverse the right subtree -> visit root
-     * Converts this BST into an array following Depth First Search postorder.
-     * Example on the fullTree var:
-     * [4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25]
-     * @param {Node} node The current node during the traversal of this tree.
-     * @param {Array<number>} vals The data that has been visited so far.
-     * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
-     */
     toArrPostorder (node = this.root, vals = []) {
         if (node) {
             this.toArrPostorder(node.left, vals)
@@ -238,6 +206,69 @@ class BinarySearchTree {
             vals.push(node.data);
         }
         return vals;
+    }
+    // ****************************************************************************
+
+    /**
+     * Recursively counts the total number of nodes in this tree.
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {Node} node The current node during the traversal of this tree.
+     * @returns {number} The total number of nodes.
+     */
+
+    size (node = this.root) {
+        if (!node) {
+            return 0;
+        }
+        return 1 + this.size(node.left) + this.size(node.right);
+    }
+
+    /**
+     * Calculates the height of the tree which is based on how many nodes from
+     * top to bottom (whichever side is taller).
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {Node} node The current node during traversal of this tree.
+     * @returns {number} The height of the tree.
+     */
+    height (node = this.root) {
+        if (!node) {
+            return 0;
+        }
+
+        let leftHeight = this.height(node.left);
+        let rightHeight = this.height(node.right);
+
+        if (leftHeight > rightHeight) {
+            return leftHeight + 1;
+        }
+        else {
+            return rightHeight + 1;
+        }
+    }
+
+    /**
+     * Determines if this tree is a full tree. A full tree is a tree where every
+     * node has both a left and a right except for the leaf nodes (last nodes)
+     * - Time: O(?).
+     * - Space: O(?).
+     * @param {Node} node The current node during traversal of this tree.
+     * @returns {boolean} Indicates if this tree is full.
+     */
+    isFull (node = this.root) {
+        if (!node) {
+            return false;
+        }
+
+        if (!node.left && !node.right) {
+            return true;
+        }
+
+        if (node.left && node.right) {
+            return this.isFull(node.left) && this.isFull(node.right);
+        }
+        return false;
     }
 }
 
@@ -282,6 +313,7 @@ threeLevelTree.root.right.left = new BSTNode(13);
       /   \   /  \    /  \   /  \
     4    12  18  24  31  44 66  90
 */
+/***************** Uncomment after insert method is created. ****************/
 const fullTree = new BinarySearchTree();
 fullTree
     .insert(25)
@@ -299,55 +331,39 @@ fullTree
     .insert(44)
     .insert(66)
     .insert(90);
-// .insertRecursive(25)
-// .insertRecursive(15)
-// .insertRecursive(10)
-// .insertRecursive(22)
-// .insertRecursive(4)
-// .insertRecursive(12)
-// .insertRecursive(18)
-// .insertRecursive(24)
-// .insertRecursive(50)
-// .insertRecursive(35)
-// .insertRecursive(70)
-// .insertRecursive(31)
-// .insertRecursive(44)
-// .insertRecursive(66)
-// .insertRecursive(90);
 
+console.log("----check size----");
+console.log(emptyTree.size());
+// 0
+console.log(oneNodeTree.size());
+// 1
+console.log(twoLevelTree.size());
+// 3
+console.log(threeLevelTree.size());
+// 6
+console.log(fullTree.size());
+// 15
 
-console.log("-----DSF Preorder-----");
-console.log(emptyTree.toArrPreorder());
-// []
-console.log(oneNodeTree.toArrPreorder());
-// [ 10 ]
-console.log(twoLevelTree.toArrPreorder());
-// [ 10, 5, 15 ]
-console.log(threeLevelTree.toArrPreorder());
-// [ 10, 5, 2, 6, 15, 13 ]
-console.log(fullTree.toArrPreorder());
-// [ 25, 15, 10,  4, 12, 22, 18, 24, 50, 35, 31, 44, 70, 66, 90 ]
+console.log("----check height----");
+console.log(emptyTree.height());
+// 0
+console.log(oneNodeTree.height());
+// 1
+console.log(twoLevelTree.height());
+// 2
+console.log(threeLevelTree.height());
+// 3
+console.log(fullTree.height());
+// 4
 
-console.log("-----DSF Inorder-----");
-console.log(emptyTree.toArrInorder());
-// []
-console.log(oneNodeTree.toArrInorder());
-// [ 10 ]
-console.log(twoLevelTree.toArrInorder());
-// [ 5, 10, 15 ]
-console.log(threeLevelTree.toArrInorder());
-// [ 2, 5, 6, 10, 13, 15 ]
-console.log(fullTree.toArrInorder());
-// [ 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90 ]
-
-console.log("-----DSF Postorder-----");
-console.log(emptyTree.toArrPostorder());
-// []
-console.log(oneNodeTree.toArrPostorder());
-// [10]
-console.log(twoLevelTree.toArrPostorder());
-// [ 5, 15, 10 ]
-console.log(threeLevelTree.toArrPostorder());
-// [ 2, 6, 5, 13, 15, 10 ]
-console.log(fullTree.toArrPostorder());
-// [ 4, 12, 10, 18, 24, 22, 15, 31, 44, 35, 66, 90, 70, 50, 25 ]
+console.log("----check isFull----");
+console.log(emptyTree.isFull());
+// false
+console.log(oneNodeTree.isFull());
+// true
+console.log(twoLevelTree.isFull());
+// true
+console.log(threeLevelTree.isFull());
+// false
+console.log(fullTree.isFull());
+// true

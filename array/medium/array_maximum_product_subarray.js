@@ -11,6 +11,7 @@ Constraints:
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 */
 
+
 const nums1 = [2, 3, -2, 4];
 const expected1 = 6;
 
@@ -21,6 +22,7 @@ const expected2 = 0;
  * @param {number[]} nums
  * @return {number}
  */
+
 const maxProduct = function (nums) {
     if (nums.length === 0) return 0;
 

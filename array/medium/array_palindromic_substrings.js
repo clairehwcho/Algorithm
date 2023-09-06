@@ -20,23 +20,41 @@ const expected2 = 6;
  * @param {string} s
  * @return {number}
  */
+
+/*
+ * Approach: Check All Substrings
+ * Time Complexity: O(N^3) for input string of length N.
+    - Since we just need to traverse every substring once, the total time taken is sum of the length of all substrings.
+    - In a string of length N, then there are:
+        N substrings of size 1.
+        N−1 substrings of size 2.
+        N−2 substrings of size 3.
+        ...
+        1 substring of size N (which is the entire string).
+    - Total time taken to traverse all of these strings is approximately N^3.
+ * Space Complexity: O(1)
+    -  We don't need to allocate any extra space since we are repeatedly iterating on the input string itself.
+ */
+
 const countSubstrings = function (s) {
     let count = 0;
 
-    const isPalindrome = (string, startIdx, endIdx) => {
-        while (startIdx < endIdx) {
-            if (string[startIdx] !== string[endIdx]) {
+    const isPalindrome = (str, start, end) => {
+        while (start < end) {
+            if (str[start] !== str[end]) {
                 return false;
             }
-            startIdx++;
-            endIdx--;
+            start++;
+            end--;
         }
         return true;
     }
 
     for (let i = 0; i < s.length; i++) {
         for (let j = i; j < s.length; j++) {
-            count += isPalindrome(s, i, j) ? 1 : 0;
+            if (isPalindrome(s, i, j)) {
+                count++;
+            }
         }
     }
     return count;

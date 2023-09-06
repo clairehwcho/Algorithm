@@ -1,17 +1,3 @@
-/**
- * Class to represent a MinHeap which is a Priority Queue optimized for fast
- * retrieval of the minimum value. It is implemented using an array but it is
- * best visualized as a tree structure where each 'node' has left and right
- * children except the 'node' may only have a left child.
- * - parent is located at: Math.floor(i / 2);
- * - left child is located at: i * 2
- * - right child is located at: i * 2 + 1
- *
- * USING 0 index
- * - parent is located at: Math.floor((i - 1) / 2);
- * - left child is located at: (i * 2) + 1
- * - right child is located at: (i * 2) + 2
- */
  class MinHeap {
     constructor () {
         /**

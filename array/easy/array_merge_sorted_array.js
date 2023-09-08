@@ -40,32 +40,72 @@ const expected3 = [1];
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 
-// Solution #1: Merge and sort
+/*
+ * Solution #1: Merge and sort
+ * Time complexity: O((m+n)log(m+n))
+ * - The cost of sorting a list of length x (m+n in this case) using a built-in sorting algorithm is O(xlog⁡x).
+ * Space complexity: O(1)
+ * - We are not using any extra space.
+ */
 // const merge = function (nums1, m, nums2, n) {
+//     // Merge nums2 into nums1.
 //     for (let i = 0; i < n; i++) {
-//         nums1[i + m] = nums2[i];
+//         nums1[m + i] = nums2[i];
 //     }
 //     nums1.sort();
-//     return nums1;
 // };
 
-// Solution #2: Three Pointers (start from the beginning)
-const merge = function (nums1, m, nums2, n) {
-    let pointer1A = m - 1;
-    let pointer1B = m + n - 1;
-    let pointer2 = n - 1;
+/*
+ * Solution #2: Three pointers (start from the end)
+ * Time complexity: O(m+n)
+ * - We are iterating through both arrays once.
+ * Space complexity: O(1)
+ * - We are not using any extra sapce.
+ */
+// const merge = function (nums1, m, nums2, n) {
+//     // Set two pointers to the end of their resepctive arrays.
+//     let pointer1 = m - 1;
+//     let pointer2 = n - 1;
 
-    while (pointer2 >= 0) {
-        if (pointer1A >= 0 && nums1[pointer1A] > nums2[pointer2]) {
-            nums1[pointer1B--] = nums1[pointer1A--];
-        }
-        else {
-            nums1[pointer1B--] = nums2[pointer2--];
+//     // Move index i backwards through the array
+//     for (let i = m + n - 1; i >= 0; i--) {
+//         if (pointer2 < 0) {
+//             break;
+//         }
+
+//         if (pointer1 >= 0 && nums1[pointer1] > nums2[pointer2]) {
+//             nums1[i] = nums1[pointer1--];
+//         } else {
+//             nums1[i] = nums2[pointer2--];
+//         }
+//     }
+// }
+
+/*
+ * Solution #3: Three pointers (start from the beginning)
+ * Time complexity: O(m+n)
+ * - We are performing n+2⋅m reads and n+2⋅m writes. Because constants are ignored in Big O notation, this gives us a time complexity of O(n+m).
+ * Space complexity: O(m)
+ * - We are allocating an additional array of length m.
+ */
+const merge = function (nums1, m, nums2, n) {
+    // Make a copy of the first first m elements of nums1
+    let nums1M = [];
+    for (let i = 0; i < m; i++) {
+        nums1M.push(nums1[i]);
+    };
+
+    // Set two pointers for nums1M and nums2 respectively
+    let pointer1 = 0;
+    let pointer2 = 0;
+
+    // Compare elements from nums1M and nums2 and insert the smallest num to nums1
+    for (let i = 0; i < m + n; i++) {
+        // Make sure that two pointers are not out of bounds
+        if (pointer2 >= n || (pointer1 < m && nums1M[pointer1] < nums2[pointer2])) {
+            nums1[i] = nums1M[pointer1++];
+        } else {
+            nums1[i] = nums2[pointer2++];
         }
     }
-    return nums1;
-};
-
-console.log(merge(nums1A, m1, nums1B, n1));
-console.log(merge(nums2A, m2, nums2B, n2));
-console.log(merge(nums3A, m3, nums3B, n3));
+}

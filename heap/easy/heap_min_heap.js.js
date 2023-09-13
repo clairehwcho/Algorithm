@@ -1,3 +1,11 @@
+class HeapNode {
+    constructor(val, row, column) {
+        this.val = val;
+        this.row = row;
+        this.column = column;
+    }
+}
+
 class MinHeap {
     constructor () {
         /**
@@ -117,28 +125,28 @@ class MinHeap {
      * - Space: O(1) constant.
      * @returns {?number} The min number or null if empty.
      */
-    // extract () {
-    //     if (this.heap.length === 1) {
-    //         return null;
-    //     }
+    extract () {
+        if (this.heap.length === 1) {
+            return null;
+        }
 
-    //     let heap = this.heap;
-    //     let minNum = heap[1];
-    //     let lastNode = heap.pop();
-    //     heap[1] = lastNode;
+        let heap = this.heap;
+        let minNum = heap[1];
+        let lastNode = heap.pop();
+        heap[1] = lastNode;
 
-    //     let parentIdx = 1;
-    //     let leftIdx = parentIdx * 2;
-    //     let rightIdx = parentIdx * 2 + 1;
+        let parentIdx = 1;
+        let leftChildIdx = parentIdx * 2;
+        let rightChildIdx = parentIdx * 2 + 1;
 
-    //     for (let i = 1; i < heap.length - 1; i++) {
-    //         if (heap[leftIdx] < heap[rightIdx] && heap[leftIdx] < heap[1]) {
-    //             minNum = heap[leftIdx];
-    //             heap[leftIdx] = heap[1];
-    //         }
-    //     }
-    //     return minNum;
-    // };
+        for (let i = 1; i < heap.length - 1; i++) {
+            if (heap[leftChildIdx] < heap[rightChildIdx] && heap[leftChildIdx] < heap[1]) {
+                minNum = heap[leftChildIdx];
+                heap[leftChildIdx] = heap[1];
+            }
+        }
+        return minNum;
+    };
 
 
 

@@ -60,10 +60,10 @@ const expected3 = [1];
  * Time complexity: O(m+n)
  * - We are iterating through both arrays once.
  * Space complexity: O(1)
- * - We are not using any extra sapce.
+ * - We are not using any extra space.
  */
 // const merge = function (nums1, m, nums2, n) {
-//     // Set two pointers to the end of their resepctive arrays.
+//     // Set two pointers to the end of their respective arrays.
 //     let pointer1 = m - 1;
 //     let pointer2 = n - 1;
 
@@ -89,7 +89,7 @@ const expected3 = [1];
  * - We are allocating an additional array of length m.
  */
 const merge = function (nums1, m, nums2, n) {
-    // Make a copy of the first first m elements of nums1
+    // Make a copy of the first m elements of nums1
     let nums1M = [];
     for (let i = 0; i < m; i++) {
         nums1M.push(nums1[i]);

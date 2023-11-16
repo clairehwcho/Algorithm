@@ -11,27 +11,27 @@ n == nums.length
 nums[i] is either 0, 1, or 2.
 */
 
-const nums1 = [2,0,2,1,1,0];
-const expected1 = [0,0,1,1,2,2];
+const nums1 = [2, 0, 2, 1, 1, 0];
+const expected1 = [0, 0, 1, 1, 2, 2];
 
-const nums2 = [2,0,1];
-const expected2 = [0,1,2];
+const nums2 = [2, 0, 1];
+const expected2 = [0, 1, 2];
 
 /**
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 
-const sortColors = function(nums) {
+const sortColors = function (nums) {
     let startIdx = 0;
-    let endIdx = nums.length-1;
+    let endIdx = nums.length - 1;
     let currentIdx = 0;
 
-    while (currentIdx <= endIdx){
-        if (nums[currentIdx] === 0){
+    while (currentIdx <= endIdx) {
+        if (nums[currentIdx] === 0) {
             [nums[startIdx++], nums[currentIdx++]] = [nums[currentIdx], nums[startIdx]];
         }
-        else if (nums[currentIdx] === 2){
+        else if (nums[currentIdx] === 2) {
             [nums[currentIdx], nums[endIdx--]] = [nums[endIdx], nums[currentIdx]];
         }
         else {

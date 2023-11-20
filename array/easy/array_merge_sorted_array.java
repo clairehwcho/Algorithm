@@ -55,7 +55,7 @@ nums2.length == n
 /*
  * Approach 2: Three Pointers (Start from the beginning)
  * Time complexity: O(n+m)
- * - We are performing n + 2*m reads and n + 2*m writes. Because constants are ignored in Big O, this gives us O(n+m)
+ * - We are performing n + 2m reads and n + 2m writes. Because constants are ignored in Big O, this gives us O(n+m)
  * Space complexity: O(m)
  * - We are allocating an additional array of length m.
  */
@@ -69,24 +69,23 @@ nums2.length == n
 //         }
 
 //         // Set two read pointers for nums1Copy and nums2 respectively.
-//         int pointer1 = 0;
-//         int pointer2 = 0;
+//         int p1 = 0;
+//         int p2 = 0;
 
-//         // Loop through nums1 with a write pointer i while comparing elements from nums1Copy and nums2 and write the smallest to nums1.
-//         for (int i = 0; i<m+n; i++){
+//         // Loop through nums1 with a write pointer p while comparing elements from nums1Copy and nums2 and write the smallest to nums1.
+//         for (int p = 0; p<m+n; p++){
 //             // Make sure that two pointers are not out of bounds.
-//             // If pointer2 is out of bounds
-//             // or if the pointer1 is within bounds and the value at the pointer1 is smaller than the value at the pointer2
-//             if (pointer2 >= n || (pointer1 < m && nums1Copy[pointer1] < nums2[pointer2])){
-//                 // Write nums1Copy[pointer1] into nums1[i] and increment pointer1 by 1.
-//                 nums1[i] = nums1Copy[pointer1++];
+//             // If p2 is out of bounds
+//             // or if p1 is within bounds and the value at p1 is smaller than the value at p2
+//             if (p2 >= n || (p1 < m && nums1Copy[p1] < nums2[p2])){
+//                 // Write nums1Copy[p1] into nums1[p] and increment p1 by 1.
+//                 nums1[p] = nums1Copy[p1++];
 //             }
 //             else {
-//                 // Else, write nums2[pointer2] into nums1[i] and increment pointer2 by 1.
-//                 nums1[i] = nums2[pointer2++];
+//                 // Else, write nums2[p2] into nums1[p] and increment p2 by 1.
+//                 nums1[p] = nums2[p2++];
 //             }
 //         }
-
 //     }
 // }
 
@@ -107,13 +106,12 @@ class Solution {
 
         // Loop through nums1 backwards.
         while (pointer >= 0) {
-            // If each pointer is within bounds, assign the value at the pointer. Otherwise,
-            // assign minimum contant value.
+            // If each pointer is within bounds, assign the value at the pointer.
+            // Otherwise, assign minimum constant value (-2147483648).
             int cand1 = pointer1 >= 0 ? nums1[pointer1] : Integer.MIN_VALUE;
             int cand2 = pointer2 >= 0 ? nums2[pointer2] : Integer.MIN_VALUE;
 
-            // Write the greater value into nums1[pointer] and decrement the corresponding
-            // pointer by 1.
+            // Write the greater value into nums1[pointer] and decrement the corresponding pointer by 1.
             if (cand1 > cand2) {
                 nums1[pointer] = cand1;
                 pointer1--;

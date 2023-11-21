@@ -25,8 +25,9 @@ Only one valid answer exists.
 */
 
 /*
- * Approach 1: Brute Force
+ * Approach 1: Brute Force (Nested Loop)
  * Time complexity: O(n^2)
+ * - The inner loop is executed n times for each element of the outer loop, which is also executed n times.
  * Space complexity: O(1)
  * - The space required does not depend on the size of the input array, so only constant space is used.
  */

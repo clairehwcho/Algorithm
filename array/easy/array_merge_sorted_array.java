@@ -53,7 +53,7 @@ nums2.length == n
 // }
 
 /*
- * Approach 2: Three Pointers (Start from the beginning)
+ * Approach 2: Two Pointers (Start from the beginning)
  * Time complexity: O(n+m)
  * - We are performing n + 2m reads and n + 2m writes. Because constants are ignored in Big O, this gives us O(n+m)
  * Space complexity: O(m)
@@ -90,7 +90,7 @@ nums2.length == n
 // }
 
 /*
- * Approach 3: Three Pointers (Start from the end)
+ * Approach 3: Two Pointers (Start from the end)
  * Time complexity: O(n+m)
  * - We are performing n + 2*m reads and n + 2*m writes. Because constants are ignored in Big O, this gives us O(n+m)
  * Space complexity: O(1)

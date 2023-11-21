@@ -32,14 +32,18 @@ Only one valid answer exists.
  */
 // class Solution {
 //     public int[] twoSum(int[] nums, int target){
+//         // Loop through the array nums with index i.
 //         for (int i = 0; i<nums.length; i++){
+//             // Loop through the array nums with index j, which is i+1.
 //             for (int j = i+1; j<nums.length; j++){
+//                 // If nums[i] + nums[j] == target, return the two indices.
 //                 if (nums[i] + nums[j] == target){
 //                     return new int[]{i, j};
 //                 }
 //             }
 //         }
-//         return new int[]{}; // In case there is no solution.
+//         // Return an empty array in case there is no solution.
+//         return new int[]{};
 //     }
 // }
 
@@ -65,11 +69,12 @@ Only one valid answer exists.
 //             int complement = target - nums[i];
 //             // If each element's complement exists in the hash table AND the complement is not nums[i] itself
 //             if (map.containsKey(complement) && map.get(complement) != i){
-//                 // Return current element's index and its complement's index.
+//                 // Return indices of the current element and its complement.
 //                 return new int[]{i, map.get(complement)};
 //             }
 //         }
-//         return new int[]{}; // In case there is no solution.
+//         // Return an empty array in case there is no solution.
+//         return new int[]{};
 //     }
 
 // }
@@ -95,6 +100,7 @@ class Solution {
             }
             map.put(nums[i], i);
         }
-        return new int[] {}; // In case there is no solution.
+        // Return an empty array in case there is no solution.
+        return new int[] {};
     }
 }

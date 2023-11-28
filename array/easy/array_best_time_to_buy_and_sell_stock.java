@@ -29,69 +29,51 @@ Constraints:
 
 // class Solution {
 //     public int maxProfit(int[] prices){
+//         // Create a maxProfit variable assigned with the value 0.
 //         int maxProfit = 0;
 
-//         for (int i = 0; i < prices.length; i++) {
-//             for (int j = i+1; j < prices.length; j++){
-//                 int currProfit = prices[j] - prices[i];
-//                 if (currProfit > maxProfit){
-//                     maxProfit = currProfit;
-//                 }
-//             }
-//         }
-//         return maxProfit;
-//     }
-// }
-
-/*
- * Approach 2: Two Pointers with One Pass
- * Time complexity: O(n)
- * Space complexity: O(1)
- */
-
-// class Solution {
-//     public int maxProfit(int[] prices){
-//         int maxProfit = 0;
-//         int buyDay = 0;
-//         int sellDay = 1;
-
-//         while (sellDay < prices.length){
-//             int currProfit = prices[sellDay] - prices[buyDay];
-
-//             if (prices[buyDay] < prices[sellDay]){
+//         // Loop through the prices array with index buyDay.
+//         for (int buyDay = 0; buyDay < prices.length - 1; buyDay++){
+//             // Loop through the prices array with index sellDay, which is buyDay + 1.
+//             for (int sellDay = buyDay + 1; sellDay < prices.length; sellDay++){
+//                 // Find a current profit by subtracting buy price from sell price.
+//                 int currProfit = prices[sellDay] - prices[buyDay];
+//                 // Update maxProfit with a bigger value between the max profit and current profit.
 //                 maxProfit = Math.max(maxProfit, currProfit);
 //             }
-//             else {
-//                 buyDay = sellDay;
-//             }
-//             sellDay++;
 //         }
+//         // Return the max profit.
 //         return maxProfit;
 //     }
 // }
 
+
 /*
- * Approach 3: One Pass
+ * Approach 2: One Pass
  * Time complexity: O(n)
+ * - We traverse the array containing n elements only once.
  * Space complexity: O(1)
  */
 
 class Solution {
-    public int maxProfit(int[] prices) {
+    public int maxProfit(int[] prices){
+        // Create a max profit variable with the value 0.
         int maxProfit = 0;
+        // Create a min price variable with MAX_VALUE.
         int minPrice = Integer.MAX_VALUE;
 
-        for (int i = 0; i < prices.length; i++) {
+        // Loop through the prices array.
+        for (int i = 0; i < prices.length; i++){
+            // Find current profit by subtracting prices[i] from minPrice
             int currProfit = prices[i] - minPrice;
-            // If today' price is less than minPrice, update the minPrice.
-            if (prices[i] < minPrice) {
+            // If prices[i] is smaller than minPrice, update minPrice.
+            if (prices[i] < minPrice){
                 minPrice = prices[i];
             }
-            // If the current profit is greater than maxProfit, update the maxProfit.
-            else if (currProfit > maxProfit) {
-                maxProfit = currProfit;
-            }
+            // Update maxProfit with a bigger value between the max profit and the current profit.
+            maxProfit = Math.max(maxProfit, currProfit);
         }
+        // Return maxProfit.
         return maxProfit;
     }
 }

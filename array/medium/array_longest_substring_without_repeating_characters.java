@@ -92,6 +92,9 @@ s consists of English letters, digits, symbols and spaces.
  * Time complexity: O(n)
  * Space complexity: O(min(n,m))
  */
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<>();

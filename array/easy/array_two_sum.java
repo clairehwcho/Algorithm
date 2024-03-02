@@ -31,6 +31,7 @@ Only one valid answer exists.
  * Space complexity: O(1)
  * - The space required does not depend on the size of the input array, so only constant space is used.
  */
+
 // class Solution {
 //     public int[] twoSum(int[] nums, int target){
 //         // Loop through the array nums with index i.
@@ -55,6 +56,9 @@ Only one valid answer exists.
  * Space complexity: O(n)
  * - The extra space required depends on the number of items stored in the hash table, which stores exactly n elements.
  */
+// import java.util.Map;
+// import java.util.HashMap;
+
 // class Solution {
 //     public int[] twoSum(int[] nums, int target){
 //         // Initialize an empty HashMap.
@@ -77,7 +81,6 @@ Only one valid answer exists.
 //         // Return an empty array in case there is no solution.
 //         return new int[]{};
 //     }
-
 // }
 
 /*
@@ -87,21 +90,26 @@ Only one valid answer exists.
  * Space complexity: O(n)
  * - The extra space required depends on the number of items stored in the hash table, which stores exactly n elements.
  */
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        // Initialize an empty HashMap.
-        Map<Integer, Integer> map = new HashMap<>();
 
-        // While iterating and inserting elements into the hash table, we can check if
-        // current element's complement already exists in the hash table.
-        for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-        // Return an empty array in case there is no solution.
-        return new int[] {};
-    }
-}
+// import java.util.HashMap;
+// import java.util.Map;
+
+// class Solution {
+//     public int[] twoSum(int[] nums, int target) {
+//         // Initialize an empty HashMap.
+//         Map<Integer, Integer> map = new HashMap<>();
+
+//         // While iterating and inserting elements into the hash table,
+//         // we can check if current element's complement already exists in the hash table.
+//         for (int i = 0; i < nums.length; i++) {
+//             int complement = target - nums[i];
+
+//             if (map.containsKey(complement)) {
+//                 return new int[] { map.get(complement), i };
+//             }
+//             map.put(nums[i], i);
+//         }
+//         // Return an empty array in case there is no solution.
+//         return new int[] {};
+//     }
+// }

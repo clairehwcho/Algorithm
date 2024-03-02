@@ -37,7 +37,7 @@ nums2.length == n
  * Time complexity: O((n+m)log(n+m))
  * - The cost of sorting a list of length x using a built-in sorting algorithm is O(xlogx).
  * Space complexity: O(n)
- * - But it can vary
+ * - But it can vary. Most programming languages have a built-in sorting algorithm that uses O(n) space.
  */
 
 // class Solution {
@@ -47,7 +47,7 @@ nums2.length == n
 //             // Write the values from nums2 into the end of nums1.
 //             nums1[i+m] = nums2[i];
 //         }
-//         // Sort nums1.
+//         // Sort nums1 using the built-in sort() method.
 //         Arrays.sort(nums1);
 //     }
 // }
@@ -73,17 +73,17 @@ nums2.length == n
 //         int p2 = 0;
 
 //         // Loop through nums1 with a write pointer p while comparing elements from nums1Copy and nums2 and write the smallest to nums1.
-//         for (int p = 0; p<m+n; p++){
+//         for (p3 = 0; p3<m+n; p3++){
 //             // Make sure that two pointers are not out of bounds.
 //             // If p2 is out of bounds
 //             // or if p1 is within bounds and the value at p1 is smaller than the value at p2
 //             if (p2 >= n || (p1 < m && nums1Copy[p1] < nums2[p2])){
-//                 // Write nums1Copy[p1] into nums1[p] and increment p1 by 1.
-//                 nums1[p] = nums1Copy[p1++];
+//                 // Write nums1Copy[p1] into nums1[p3] and increment p1 by 1.
+//                 nums1[p3] = nums1Copy[p1++];
 //             }
 //             else {
-//                 // Else, write nums2[p2] into nums1[p] and increment p2 by 1.
-//                 nums1[p] = nums2[p2++];
+//                 // Else, write nums2[p2] into nums1[p3] and increment p2 by 1.
+//                 nums1[p3] = nums2[p2++];
 //             }
 //         }
 //     }
@@ -100,47 +100,46 @@ nums2.length == n
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         // Set three pointers to the end of their respective arrays.
-        int pointer1 = m - 1;
-        int pointer2 = n - 1;
-        int pointer = nums1.length - 1;
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int p3 = m + n - 1;
 
         // Loop through nums1 backwards.
-        while (pointer >= 0) {
-            // If each pointer is within bounds, assign the value at the pointer.
-            // Otherwise, assign minimum constant value (-2147483648).
-            int cand1 = pointer1 >= 0 ? nums1[pointer1] : Integer.MIN_VALUE;
-            int cand2 = pointer2 >= 0 ? nums2[pointer2] : Integer.MIN_VALUE;
-
-            // Write the greater value into nums1[pointer] and decrement the corresponding pointer by 1.
-            if (cand1 > cand2) {
-                nums1[pointer] = cand1;
-                pointer1--;
+        // Make sure the p2 and p3 are within bounds.
+        while (p2 >= 0 && p3 >= 0) {
+            // If p1 is within bounds and nums1[p1] is greater than nums2[p2]
+            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+                // write nums1[p1] into nums1[p3] and decrement both pointers by 1.
+                nums1[p3--] = nums1[p1--];
             } else {
-                nums1[pointer] = cand2;
-                pointer2--;
+                // Else, write nums2[p2] into nums1[p3] and decrement both pointers by 1.
+                nums1[p3--] = nums2[p2--];
             }
-            // Decrement the pointer.
-            pointer--;
         }
 
-        // // Loop through nums1 backwards.
-        // for (int i = m + n - 1; i >= 0; i--){
-        // // If the pointer2 is out of bounds, break out of the loop.
-        // if (pointer2 < 0){
-        // break;
-        // }
+        // // Set three pointers to the end of their respective arrays.
+        // int pointer1 = m - 1;
+        // int pointer2 = n - 1;
+        // int pointer = m + n - 1;
 
-        // // If the pointer1 is within bounds
-        // // and the value at the pointer1 is greater than the value at the pointer2
-        // if (pointer1 >= 0 && nums1[pointer1]> nums2[pointer2]){
-        // // Write nums1[pointer1] into nums1[i] and decrement pointer1 by 1.
-        // nums1[i] = nums1[pointer1--];
-        // }
-        // else {
-        // // Else, write nums2[pointer2] into nums1[i] and decrement pointer2 by 1.
-        // nums1[i] = nums2[pointer2--];
-        // }
+        // // Loop through nums1 backwards.
+        // while (pointer >= 0) {
+        //     // If each pointer is within bounds, assign the value at the pointer.
+        //     // Otherwise, assign minimum constant value (-2147483648).
+        //     int cand1 = pointer1 >= 0 ? nums1[pointer1] : Integer.MIN_VALUE;
+        //     int cand2 = pointer2 >= 0 ? nums2[pointer2] : Integer.MIN_VALUE;
+
+        //     // Write the greater value into nums1[pointer] and decrement the corresponding
+        //     // pointer by 1.
+        //     if (cand1 > cand2) {
+        //         nums1[pointer] = cand1;
+        //         pointer1--;
+        //     } else {
+        //         nums1[pointer] = cand2;
+        //         pointer2--;
+        //     }
+        //     // Decrement the pointer.
+        //     pointer--;
         // }
     }
 }
-

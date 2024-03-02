@@ -21,19 +21,21 @@ Constraints:
 */
 
 /*
- * Approach 1: Linear Search
+ * Approach 1: Brute Force (Linear Search)
  * Time complexity: O(n^2)
  * Space complexity: O(1)
  */
 // class Solution {
-//     public boolean containsDuplicate(int[] nums){
-//         for (int i = 0; i < nums.length; i++){
-//             for (int j = i+1; j < nums.length; j++){
-//                 if (nums[i] == nums[j]){
-//                     return true;
-//                 }
+//     public boolean containsDuplicate(int[] nums) {
+//         // Loop through the nums array with index i.
+//         for (int i = 0; i < nums.length - 1; i++){
+//             // Loop through the nums array with index j, which is i + 1.
+//             for (int j = i + 1; j < nums.length; j++){
+//                 // If nums[i] is equal to nums[j], return true.
+//                 if (nums[i] == nums[j]) return true;
 //             }
 //         }
+//         // Else, return false.
 //         return false;
 //     }
 // }
@@ -47,36 +49,43 @@ Constraints:
  */
 // class Solution {
 //     public boolean containsDuplicate(int[] nums){
+//         // Sort the array.
 //         Arrays.sort(nums);
-//         for (int i = 0; i<nums.length - 1; i++){
-//             if (nums[i] == nums[i+1]){
-//                 return true;
-//             }
+//         // Loop through the sorted array.
+//         for (int i = 0; i < nums.length - 1; i++){
+//             // If the nums[i] is equal to nums[i + 1], return true.
+//             if (nums[i] == nums[i + 1]) return true;
 //         }
+//         // Else, return false.
 //         return false;
 //     }
 // }
 
 /*
- * Approach 3: HashTable
+ * Approach 3: HashSet
  * Time complexity: O(n)
- * - We do search() and insert() for n times and each operation takes constant time.
+ * - We traverse the array only once.
  * Space complexity: O(n)
- * - The space used by a hash table is linear with the number of elements in it.
+ * - The space used by the HashSet is linear with the number of elements in it.
  */
+import java.util.HashSet;
+import java.util.Set;
 
 class Solution {
     public boolean containsDuplicate(int[] nums) {
-        // Initialize a HashSet.
+        // Initialize an empty HashSet.
         Set<Integer> set = new HashSet<>();
 
         // Use enhanced for loop to iterate over HashSet.
         for (int num : nums) {
+            // If the set contains num, return true
             if (set.contains(num)) {
                 return true;
             }
+            // Add the num to the set.
             set.add(num);
         }
+        // Return false.
         return false;
     }
 }

@@ -66,7 +66,7 @@ class Solution1 {
 }
 
 /**
- * Approach 2:  Convert and Compare with Two Pointers
+ * Approach 2: Convert and Compare with Two Pointers
  * Time Complexity: O(n), where n is the length of the string s.
  * - Converting the string to lowercase and iterating through it to filter out non-alphanumeric characters takes O(n).
  * - The two-pointer approach inside the while loop takes O(n/2), which simplifies to O(n).
@@ -110,7 +110,7 @@ class Solution2 {
 }
 
 /**
- * Approach 3:  One-Pass Two Pointers
+ * Approach 3: One-Pass Two Pointers
  * Time Complexity: O(n), where n is the length of the string s.
  * - We traverse the string only once with two pointers.
  * Space Complexity: O(1)

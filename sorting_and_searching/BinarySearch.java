@@ -86,16 +86,19 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
+        // Test case 1
         int[] nums1 = { -1, 0, 3, 5, 9, 12 };
         int target1 = 9;
         int expectedOutput1 = 4;
 
+        // Test case 2
         int[] nums2 = { -1, 0, 3, 5, 9, 12 };
         int target2 = 2;
         int expectedOutput2 = -1;
 
         // Test solutionOne
         System.out.println("*****Testing solutionOne*****");
+        System.out.println("Test Case 1:");
         int solutionOneOutput1 = solutionOne(nums1, target1);
         if (solutionOneOutput1 == expectedOutput1) {
             System.out.println(
@@ -106,10 +109,11 @@ public class BinarySearch {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         int solutionOneOutput2 = solutionOne(nums2, target2);
         if (solutionOneOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + Arrays.toString(nums2) + ", " + target2 + "\nOutput: " + solutionOneOutput2
+                    "Input: " + Arrays.toString(nums2) + ", " + target2 + "\nOutput: " + solutionOneOutput2
                             + "\nExpected Output: "
                             + expectedOutput2
                             + "\nResult: Correct answer");
@@ -119,6 +123,7 @@ public class BinarySearch {
 
         // Test solutionTwo
         System.out.println("\n***** Testing solutionTwo *****");
+        System.out.println("Test Case 1:");
         int solutionTwoOutput1 = solutionTwo(nums1, target1);
         if (solutionTwoOutput1 == expectedOutput1) {
             System.out.println(
@@ -129,10 +134,11 @@ public class BinarySearch {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         int solutionTwoOutput2 = solutionTwo(nums2, target2);
         if (solutionTwoOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + Arrays.toString(nums2) + ", " + target2 + "\nOutput: " + solutionTwoOutput2
+                    "Input: " + Arrays.toString(nums2) + ", " + target2 + "\nOutput: " + solutionTwoOutput2
                             + "\nExpected Output: "
                             + expectedOutput2
                             + "\nResult: Correct answer");

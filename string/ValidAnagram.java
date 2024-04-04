@@ -135,13 +135,17 @@ public class ValidAnagram {
     }
 
     public static void main(String[] args) {
+        // Test case 1
         String input1A = "anagram", input1B = "nagaram";
-        String input2A = "rat", input2B = "car";
         boolean expectedOutput1 = true;
+
+        // Test case 2
+        String input2A = "rat", input2B = "car";
         boolean expectedOutput2 = false;
 
         // Test solutionOne
         System.out.println("*****Testing solutionOne*****");
+        System.out.println("Test Case 1:");
         boolean solutionOneOutput1 = solutionOne(input1A, input1B);
         if (solutionOneOutput1 == expectedOutput1) {
             System.out.println(
@@ -151,10 +155,11 @@ public class ValidAnagram {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionOneOutput2 = solutionOne(input2A, input2B);
         if (solutionOneOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2A + ", " + input2B + "\nOutput: " + solutionOneOutput2 + "\nExpected Output: "
+                    "Input: " + input2A + ", " + input2B + "\nOutput: " + solutionOneOutput2 + "\nExpected Output: "
                             + expectedOutput2
                             + "\nResult: Correct answer");
         } else {
@@ -163,6 +168,7 @@ public class ValidAnagram {
 
         // Test solutionTwo
         System.out.println("\n***** Testing solutionTwo *****");
+        System.out.println("Test Case 1:");
         boolean solutionTwoOutput1 = solutionTwo(input1A, input1B);
         if (solutionTwoOutput1 == expectedOutput1) {
             System.out.println(
@@ -172,10 +178,11 @@ public class ValidAnagram {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionTwoOutput2 = solutionTwo(input2A, input2B);
         if (solutionTwoOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2A + ", " + input2B + "\nOutput: " + solutionTwoOutput2 + "\nExpected Output: "
+                    "Input: " + input2A + ", " + input2B + "\nOutput: " + solutionTwoOutput2 + "\nExpected Output: "
                             + expectedOutput2
                             + "\nResult: Correct answer");
         } else {
@@ -184,6 +191,7 @@ public class ValidAnagram {
 
         // Test solutionThree
         System.out.println("\n***** Testing solutionThree *****");
+        System.out.println("Test Case 1:");
         boolean solutionThreeOutput1 = solutionThree(input1A, input1B);
         if (solutionThreeOutput1 == expectedOutput1) {
             System.out.println(
@@ -193,10 +201,11 @@ public class ValidAnagram {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionThreeOutput2 = solutionThree(input2A, input2B);
         if (solutionThreeOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2A + ", " + input2B + "\nOutput: " + solutionThreeOutput2 + "\nExpected Output: "
+                    "Input: " + input2A + ", " + input2B + "\nOutput: " + solutionThreeOutput2 + "\nExpected Output: "
                             + expectedOutput2
                             + "\nResult: Correct answer");
         } else {

@@ -143,15 +143,21 @@ public class ValidPalindrome {
     }
 
     public static void main(String[] args) {
+        // Test case 1
         String input1 = "A man, a plan, a canal: Panama";
-        String input2 = "race a car";
-        String input3 = " ";
         boolean expectedOutput1 = true;
+
+        // Test case 2
+        String input2 = "race a car";
         boolean expectedOutput2 = false;
+
+        // Test case 3
+        String input3 = " ";
         boolean expectedOutput3 = true;
 
         // Test solutionOne
         System.out.println("*****Testing solutionOne*****");
+        System.out.println("Test Case 1:");
         boolean solutionOneOutput1 = solutionOne(input1);
         if (solutionOneOutput1 == expectedOutput1) {
             System.out.println(
@@ -160,18 +166,20 @@ public class ValidPalindrome {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionOneOutput2 = solutionOne(input2);
         if (solutionOneOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2 + "\nOutput: " + solutionOneOutput2 + "\nExpected Output: " + expectedOutput2
+                    "Input: " + input2 + "\nOutput: " + solutionOneOutput2 + "\nExpected Output: " + expectedOutput2
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 3:");
         boolean solutionOneOutput3 = solutionOne(input3);
         if (solutionOneOutput3 == expectedOutput3) {
             System.out.println(
-                    "\nInput: " + input3 + "\nOutput: " + solutionOneOutput3 + "\nExpected Output: " + expectedOutput3
+                    "Input: " + input3 + "\nOutput: " + solutionOneOutput3 + "\nExpected Output: " + expectedOutput3
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");
@@ -179,6 +187,7 @@ public class ValidPalindrome {
 
         // Test solutionTwo
         System.out.println("\n***** Testing solutionTwo *****");
+        System.out.println("Test Case 1:");
         boolean solutionTwoOutput1 = solutionTwo(input1);
         if (solutionTwoOutput1 == expectedOutput1) {
             System.out.println(
@@ -187,18 +196,20 @@ public class ValidPalindrome {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionTwoOutput2 = solutionTwo(input2);
         if (solutionTwoOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2 + "\nOutput: " + solutionTwoOutput2 + "\nExpected Output: " + expectedOutput2
+                    "Input: " + input2 + "\nOutput: " + solutionTwoOutput2 + "\nExpected Output: " + expectedOutput2
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 3:");
         boolean solutionTwoOutput3 = solutionTwo(input3);
         if (solutionTwoOutput3 == expectedOutput3) {
             System.out.println(
-                    "\nInput: " + input3 + "\nOutput: " + solutionTwoOutput3 + "\nExpected Output: " + expectedOutput3
+                    "Input: " + input3 + "\nOutput: " + solutionTwoOutput3 + "\nExpected Output: " + expectedOutput3
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");
@@ -206,6 +217,7 @@ public class ValidPalindrome {
 
         // Test solutionThree
         System.out.println("\n***** Testing solutionThree *****");
+        System.out.println("Test Case 1:");
         boolean solutionThreeOutput1 = solutionThree(input1);
         if (solutionThreeOutput1 == expectedOutput1) {
             System.out.println(
@@ -214,18 +226,20 @@ public class ValidPalindrome {
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 2:");
         boolean solutionThreeOutput2 = solutionThree(input2);
         if (solutionThreeOutput2 == expectedOutput2) {
             System.out.println(
-                    "\nInput: " + input2 + "\nOutput: " + solutionThreeOutput2 + "\nExpected Output: " + expectedOutput2
+                    "Input: " + input2 + "\nOutput: " + solutionThreeOutput2 + "\nExpected Output: " + expectedOutput2
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");
         }
+        System.out.println("\nTest Case 3:");
         boolean solutionThreeOutput3 = solutionThree(input3);
         if (solutionThreeOutput3 == expectedOutput3) {
             System.out.println(
-                    "\nInput: " + input3 + "\nOutput: " + solutionThreeOutput3 + "\nExpected Output: " + expectedOutput3
+                    "Input: " + input3 + "\nOutput: " + solutionThreeOutput3 + "\nExpected Output: " + expectedOutput3
                             + "\nResult: Correct answer");
         } else {
             System.out.println("Wrong Answer");

@@ -127,18 +127,21 @@ public class MergeSortedArray {
     }
 
     public static void main(String[] args) {
+        // Test case 1
         int[] originalNums1A = { 1, 2, 3, 0, 0, 0 };
         int[] nums1A = Arrays.copyOf(originalNums1A, originalNums1A.length);
         int[] nums1B = { 2, 5, 6 };
         int m1 = 3, n1 = 3;
         int[] expectedOutput1 = { 1, 2, 2, 3, 5, 6 };
 
+        // Test case 2
         int[] originalNums2A = { 1 };
         int[] nums2A = Arrays.copyOf(originalNums2A, originalNums2A.length);
         int[] nums2B = {};
         int m2 = 1, n2 = 0;
         int[] expectedOutput2 = { 1 };
 
+        // Test case 3
         int[] originalNums3A = { 0 };
         int[] nums3A = Arrays.copyOf(originalNums3A, originalNums3A.length);
         int[] nums3B = { 1 };
@@ -147,42 +150,51 @@ public class MergeSortedArray {
 
         // Test solutionOne
         System.out.println("***** Testing solutionOne *****");
+        System.out.println("Test Case 1:");
         solutionOne(nums1A, m1, nums1B, n1);
         System.out.println(Arrays.equals(nums1A, expectedOutput1) ? "Correct answer" : "Wrong answer");
         nums1A = Arrays.copyOf(originalNums1A, originalNums1A.length);
 
+        System.out.println("\nTest Case 2:");
         solutionOne(nums2A, m2, nums2B, n2);
         System.out.println(Arrays.equals(nums2A, expectedOutput2) ? "Correct answer" : "Wrong answer");
         nums2A = Arrays.copyOf(originalNums2A, originalNums2A.length);
 
+        System.out.println("\nTest Case 3:");
         solutionOne(nums3A, m3, nums3B, n3);
         System.out.println(Arrays.equals(nums3A, expectedOutput3) ? "Correct answer" : "Wrong answer");
         nums3A = Arrays.copyOf(originalNums3A, originalNums3A.length);
 
         // Test solutionTwo
-        System.out.println("***** Testing solutionTwo *****");
+        System.out.println("\n***** Testing solutionTwo *****");
+        System.out.println("Test Case 1:");
         solutionTwo(nums1A, m1, nums1B, n1);
         System.out.println(Arrays.equals(nums1A, expectedOutput1) ? "Correct answer" : "Wrong answer");
         nums1A = Arrays.copyOf(originalNums1A, originalNums1A.length);
 
+        System.out.println("\nTest Case 2:");
         solutionTwo(nums2A, m2, nums2B, n2);
         System.out.println(Arrays.equals(nums2A, expectedOutput2) ? "Correct answer" : "Wrong answer");
         nums2A = Arrays.copyOf(originalNums2A, originalNums2A.length);
 
+        System.out.println("\nTest Case 3:");
         solutionTwo(nums3A, m3, nums3B, n3);
         System.out.println(Arrays.equals(nums3A, expectedOutput3) ? "Correct answer" : "Wrong answer");
         nums3A = Arrays.copyOf(originalNums3A, originalNums3A.length);
 
         // Test solutionThree
-        System.out.println("***** Testing solutionThree *****");
+        System.out.println("\n***** Testing solutionThree *****");
+        System.out.println("Test Case 1:");
         solutionThree(nums1A, m1, nums1B, n1);
         System.out.println(Arrays.equals(nums1A, expectedOutput1) ? "Correct answer" : "Wrong answer");
         nums1A = Arrays.copyOf(originalNums1A, originalNums1A.length);
 
+        System.out.println("\nTest Case 2:");
         solutionThree(nums2A, m2, nums2B, n2);
         System.out.println(Arrays.equals(nums2A, expectedOutput2) ? "Correct answer" : "Wrong answer");
         nums2A = Arrays.copyOf(originalNums2A, originalNums2A.length);
 
+        System.out.println("\nTest Case 3:");
         solutionThree(nums3A, m3, nums3B, n3);
         System.out.println(Arrays.equals(nums3A, expectedOutput3) ? "Correct answer" : "Wrong answer");
         nums3A = Arrays.copyOf(originalNums3A, originalNums3A.length);

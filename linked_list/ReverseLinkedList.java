@@ -203,7 +203,7 @@ public class ReverseLinkedList {
         SinglyLinkedList expectedOutput2 = new SinglyLinkedList();
         expectedOutput2.insertAtBackMany(new int[] { 2, 1 });
 
-        // Test case3: Edge case with an empty list
+        // Test case 3: Edge case with an empty list
         SinglyLinkedList list3 = new SinglyLinkedList();
         SinglyLinkedList expectedOutput3 = new SinglyLinkedList();
 

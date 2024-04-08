@@ -1,1 +1,28 @@
+# Compiled bytecode
+*.class
+
+# Build output
+/target/
+/build/
+
+# IDE files
+/.idea/
+/.vscode/
+
+# Maven specific
+/mvnw
+/mvnw.cmd
+/.mvn/
+*.iml
+
+# Eclipse specific
 /.metadata/
+/.project
+/.classpath
+
+# Intellij specific
+/out/
+
+# Gradle specific
+/.gradle/
+/build/

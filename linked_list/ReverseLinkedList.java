@@ -1,19 +1,22 @@
-package linked_list;
-
 // Define ListNode
 class ListNode {
     // A single node in a linked list has two fields.
     int val; // The value of the node.
     ListNode next; // The reference to the next node.
 
-    // Constructors
+    // Constructor to initialize a node
+    // without a specific value or a reference to the next node.
     ListNode() {
     };
 
+    // Constructor to initialize a node
+    // with a specific value and no reference to the next node.
     ListNode(int val) {
         this.val = val;
     };
 
+    // Constructor to initialize a node
+    // with both a specific value and a reference to the next node.
     ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
@@ -39,9 +42,10 @@ class SinglyLinkedList {
         if (head == null) {
             // Set the head to the newly created node.
             head = newNode;
-            // If the list is not empty
-        } else {
-            // Create a current node and set it to the head.
+        }
+        // If the list is not empty
+        else {
+            // Create a current node pointer and set it to the head.
             ListNode curr = head;
             // Iterate through each node until it reaches the last node.
             while (curr.next != null) {
@@ -59,27 +63,8 @@ class SinglyLinkedList {
     public void insertAtBackMany(int[] vals) {
         // Loop through the array of values.
         for (int val : vals) {
-            // Create a new node with each given value in the array.
-            ListNode newNode = new ListNode(val);
-
-            // If the list is empty
-            if (head == null) {
-                // Set the head to the newly created node.
-                head = newNode;
-                // If the list is not empty
-            } else {
-                // Create a current node and set it to the head.
-                ListNode curr = head;
-                // Iterate through each node until it reaches the last node.
-                while (curr.next != null) {
-                    // Update the current node to the next node.
-                    curr = curr.next;
-                }
-                // After the loop, the current node refers to the last node in the list.
-                // Set the next of the current node to point to the newly created node.
-                curr.next = newNode;
-            }
-            System.out.println(val + " inserted");
+            // Call the function to insert each node.
+            insertAtBack(val);
         }
     }
 
@@ -89,9 +74,10 @@ class SinglyLinkedList {
         if (head == null) {
             // Print an empty list.
             System.out.print("null");
-            // If the list is not empty
-        } else {
-            // Create a current node and set it to the head.
+        }
+        // If the list is not empty
+        else {
+            // Create a current node pointer and set it to the head.
             ListNode curr = head;
             // Iterate through each node until it reaches the last node.
             while (curr != null) {
@@ -106,7 +92,7 @@ class SinglyLinkedList {
                 curr = curr.next;
             }
         }
-        // Print a newline at the end.
+        // Print a new line at the end.
         System.out.println();
     }
 }

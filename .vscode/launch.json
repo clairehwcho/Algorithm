@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "LinkedListCycle",
+            "request": "launch",
+            "mainClass": "LinkedListCycle",
+            "projectName": "algorithm_2faf97b"
+        },
+        {
+            "type": "java",
+            "name": "RansomNote",
+            "request": "launch",
+            "mainClass": "RansomNote",
+            "projectName": "algorithm_2faf97b"
+        },
+        {
+            "type": "java",
+            "name": "ValidAnagram",
+            "request": "launch",
+            "mainClass": "ValidAnagram",
+            "projectName": "algorithm_2faf97b"
+        },
+        {
+            "type": "java",
+            "name": "ValidPalindrome",
+            "request": "launch",
+            "mainClass": "ValidPalindrome",
+            "projectName": "algorithm_2faf97b"
+        },
+        {
+            "type": "java",
+            "name": "MergeSortedArray",
+            "request": "launch",
+            "mainClass": "array.MergeSortedArray",
+            "projectName": "algorithm_2faf97b"
+        },
+        {
+            "type": "java",
+            "name": "BinarySearch",
+            "request": "launch",
+            "mainClass": "sorting_and_searching.BinarySearch",
+            "projectName": "algorithm_2faf97b"
+        }
+    ]
+}

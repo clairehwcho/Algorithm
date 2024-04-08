@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class ValidPalindrome {
     /**
      * A phrase is a palindrome if, after converting all uppercase letters into

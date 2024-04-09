@@ -107,40 +107,7 @@ public class ReverseLinkedList {
      */
 
     /**
-     * Approach 1: Iteration with Two Pointers
-     * Time Complexity: O(n), where n is the number of nodes in the linked list.
-     * - It iterates through each node of the list exactly once.
-     * Space Complexity: O(1)
-     * - It only uses a constant amount of additional space for the prev, curr, and
-     * nextTemp pointers, regardless of the size of the input linked list.
-     *
-     * @param head The input head of a singly linked list.
-     * @return The reversed singly linked list.
-     */
-
-    public static ListNode solutionOne(ListNode head) {
-        // Set two pointers to track previous and current nodes.
-        ListNode prev = null;
-        ListNode curr = head;
-
-        // Iterate through each node until it reaches the last node.
-        while (curr != null) {
-            // Store the next node.
-            ListNode nextTemp = curr.next;
-            // Reverse the direction by making the current pointer point to the previous
-            // node.
-            curr.next = prev;
-            // Move the previous pointer to the current node.
-            prev = curr;
-            // Move the current pointer to the stored next node.
-            curr = nextTemp;
-        }
-        // Return the new head of the reversed list.
-        return prev;
-    }
-
-    /**
-     * Approach 2: Recursion
+     * Approach 1: Recursion
      * Time Complexity: O(n), where n is the number of nodes in the linked list.
      * - It needs to traverse the entire list once to reverse it.
      * - In each recursive call, it processes one node, and there are n nodes in
@@ -162,20 +129,53 @@ public class ReverseLinkedList {
      * @return The reversed singly linked list.
      */
 
-    public static ListNode solutionTwo(ListNode head) {
+    public static ListNode solutionOne(ListNode head) {
         // Base case: if the list is empty or has only one node, return the head.
         if (head == null || head.next == null) {
             return head;
         }
 
         // Recursively move all the way to the end of the original list.
-        ListNode reversedList = solutionTwo(head.next);
+        ListNode reversedList = solutionOne(head.next);
         // Reverse the pointers: make the next node point to the current node.
         head.next.next = head;
         // Head becomes the last node. Avoid circular loop.
         head.next = null;
         // Return the head of the reversed list (previously the last node).
         return reversedList;
+    }
+
+    /**
+     * Approach 2: Iteration with Two Pointers
+     * Time Complexity: O(n), where n is the number of nodes in the linked list.
+     * - It iterates through each node of the list exactly once.
+     * Space Complexity: O(1)
+     * - It only uses a constant amount of additional space for the prev, curr, and
+     * nextTemp pointers, regardless of the size of the input linked list.
+     *
+     * @param head The input head of a singly linked list.
+     * @return The reversed singly linked list.
+     */
+
+    public static ListNode solutionTwo(ListNode head) {
+        // Set two pointers to track previous and current nodes.
+        ListNode prev = null;
+        ListNode curr = head;
+
+        // Iterate through each node until it reaches the last node.
+        while (curr != null) {
+            // Store the next node.
+            ListNode nextTemp = curr.next;
+            // Reverse the direction by making the current pointer point to the previous
+            // node.
+            curr.next = prev;
+            // Move the previous pointer to the current node.
+            prev = curr;
+            // Move the current pointer to the stored next node.
+            curr = nextTemp;
+        }
+        // Return the new head of the reversed list.
+        return prev;
     }
 
     public static void main(String[] args) {

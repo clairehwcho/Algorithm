@@ -1,4 +1,4 @@
-// Define ListNode
+// Define ListNode.
 class ListNode {
     // A single node in a linked list has two fields.
     int val; // The value of the node.
@@ -10,7 +10,7 @@ class ListNode {
     };
 
     // Constructor to initialize a node
-    // with a specific value and no reference to the next node.
+    // with a specific value but no reference to the next node.
     ListNode(int val) {
         this.val = val;
     };
@@ -23,7 +23,7 @@ class ListNode {
     };
 }
 
-// Define SinglyLinkedList
+// Define SinglyLinkedList.
 class SinglyLinkedList {
     // A SinglyLinkedList has one field.
     ListNode head; // The reference to the first node in the list.
@@ -35,28 +35,30 @@ class SinglyLinkedList {
 
     // Method to insert a new node at the end of the list.
     public void insertAtBack(int val) {
-        // Create a new node with the given value.
-        ListNode newNode = new ListNode(val);
-
         // If the list is empty
         if (head == null) {
-            // Set the head to the newly created node.
-            head = newNode;
+            // Print an empty list.
+            System.out.print("null");
         }
         // If the list is not empty
         else {
             // Create a current node pointer and set it to the head.
             ListNode curr = head;
             // Iterate through each node until it reaches the last node.
-            while (curr.next != null) {
+            while (curr != null) {
+                // Print the value of the current node.
+                System.out.print(curr.val);
+                // If the next node exists
+                if (curr.next != null) {
+                    // Add comma between the nodes.
+                    System.out.print(", ");
+                }
                 // Update the current node to the next node.
                 curr = curr.next;
             }
-            // After the loop, the current node refers to the last node in the list.
-            // Set the next of the current node to point to the newly created node.
-            curr.next = newNode;
         }
-        System.out.println(val + " inserted");
+        // Print a new line at the end.
+        System.out.println();
     }
 
     // Method to insert multiple nodes at the end of the list.
@@ -69,7 +71,7 @@ class SinglyLinkedList {
     }
 
     // Method to print the values of all nodes in the list.
-    public void display() {
+    public void printList() {
         // If the list is empty
         if (head == null) {
             // Print an empty list.
@@ -105,7 +107,7 @@ public class ReverseLinkedList {
      */
 
     /**
-     * Approach 1: Iterative
+     * Approach 1: Iteration with Two Pointers
      * Time Complexity: O(n), where n is the number of nodes in the linked list.
      * - It iterates through each node of the list exactly once.
      * Space Complexity: O(1)
@@ -138,7 +140,7 @@ public class ReverseLinkedList {
     }
 
     /**
-     * Approach 2: Recursive
+     * Approach 2: Recursion
      * Time Complexity: O(n), where n is the number of nodes in the linked list.
      * - It needs to traverse the entire list once to reverse it.
      * - In each recursive call, it processes one node, and there are n nodes in
@@ -197,37 +199,37 @@ public class ReverseLinkedList {
         System.out.println("*****Testing solutionOne*****");
         System.out.println("Test Case 1:");
         System.out.print("Input List: ");
-        list1.display();
+        list1.printList();
         System.out.print("Expected Output: ");
-        expectedOutput1.display();
+        expectedOutput1.printList();
         // Reverse the list and update the head reference of the original list.
         list1.head = ReverseLinkedList.solutionOne(list1.head);
         System.out.print("Actual Output: ");
-        list1.display();
+        list1.printList();
         // Reverse the list again back to the original test case.
         list1.head = ReverseLinkedList.solutionOne(list1.head);
 
         System.out.println("\nTest Case 2:");
         System.out.print("Input List: ");
-        list2.display();
+        list2.printList();
         System.out.print("Expected Output: ");
-        expectedOutput2.display();
+        expectedOutput2.printList();
         // Reverse the list and update the head reference of the original list.
         list2.head = ReverseLinkedList.solutionOne(list2.head);
         System.out.print("Actual Output: ");
-        list2.display();
+        list2.printList();
         // Reverse the list again back to the original test case.
         list2.head = ReverseLinkedList.solutionOne(list2.head);
 
         System.out.println("\nTest Case 3:");
         System.out.print("Input List: ");
-        list3.display();
+        list3.printList();
         System.out.print("Expected Output: ");
-        expectedOutput3.display();
+        expectedOutput3.printList();
         // Reverse the list and update the head reference of the original list.
         list3.head = ReverseLinkedList.solutionOne(list3.head);
         System.out.print("Actual Output: ");
-        list3.display();
+        list3.printList();
         // Reverse the list again back to the original test case.
         list3.head = ReverseLinkedList.solutionOne(list3.head);
 
@@ -235,37 +237,37 @@ public class ReverseLinkedList {
         System.out.println("\n*****Testing solutionTwo*****");
         System.out.println("Test Case 1:");
         System.out.print("Input List: ");
-        list1.display();
+        list1.printList();
         System.out.print("Expected Output: ");
-        expectedOutput1.display();
+        expectedOutput1.printList();
         // Reverse the list and update the head reference of the original list.
         list1.head = ReverseLinkedList.solutionTwo(list1.head);
         System.out.print("Actual Output: ");
-        list1.display();
+        list1.printList();
         // Reverse the list again back to the original test case.
         list1.head = ReverseLinkedList.solutionTwo(list1.head);
 
         System.out.println("\nTest Case 2:");
         System.out.print("Input List: ");
-        list2.display();
+        list2.printList();
         System.out.print("Expected Output: ");
-        expectedOutput2.display();
+        expectedOutput2.printList();
         // Reverse the list and update the head reference of the original list.
         list2.head = ReverseLinkedList.solutionTwo(list2.head);
         System.out.print("Actual Output: ");
-        list2.display();
+        list2.printList();
         // Reverse the list again back to the original test case.
         list2.head = ReverseLinkedList.solutionTwo(list2.head);
 
         System.out.println("\nTest Case 3:");
         System.out.print("Input List: ");
-        list3.display();
+        list3.printList();
         System.out.print("Expected Output: ");
-        expectedOutput3.display();
+        expectedOutput3.printList();
         // Reverse the list and update the head reference of the original list.
         list3.head = ReverseLinkedList.solutionTwo(list3.head);
         System.out.print("Actual Output: ");
-        list3.display();
+        list3.printList();
         // Reverse the list again back to the original test case.
         list3.head = ReverseLinkedList.solutionTwo(list3.head);
     }

@@ -1,31 +1,31 @@
 import java.util.*;
 
-// Define ListNode
+// Define ListNode.
 class ListNode {
     // A single node in a linked list has two fields.
     int val; // The value of the node.
     ListNode next; // The reference to the next node.
 
     // Constructor to initialize a node
-    // without a specific value and a reference to the next node.
+    // without a specific value or a reference to the next node.
     ListNode() {
     };
 
     // Constructor to initialize a node
-    // with a specific value and no reference to the next node.
+    // with a specific value but no reference to the next node.
     ListNode(int val) {
         this.val = val;
     };
 
-    // Constructor to initialize a node with
-    // both a specific value and a reference to the next node.
+    // Constructor to initialize a node
+    // with both a specific value and a reference to the next node.
     ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     };
-}
+};
 
-// Define SinglyLinkedList
+// Define SinglyLinkedList.
 class SinglyLinkedList {
     // A SinglyLinkedList has one field.
     ListNode head; // The reference to the first node in the list.
@@ -122,7 +122,7 @@ class SinglyLinkedList {
     }
 
     // Method to print the values of all nodes in the list.
-    public void display() {
+    public void printList() {
         // If the list is empty
         if (head == null) {
             // Print an empty list.
@@ -133,7 +133,7 @@ class SinglyLinkedList {
             // Create a current node pointer and set it to the head.
             ListNode curr = head;
             // Iterate through each node until it reaches the last node.
-            while (curr.next != null) {
+            while (curr != null) {
                 // Print the value of the current node.
                 System.out.print(curr.val);
                 // If the next node exists

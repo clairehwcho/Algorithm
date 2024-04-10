@@ -1,4 +1,4 @@
-package sorting_and_searching;
+package array;
 
 import java.util.*;
 

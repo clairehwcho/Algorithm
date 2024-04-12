@@ -24,95 +24,113 @@ class MyStack {
     private Queue<Integer> queue;
     private Queue<Integer> queueTemp;
 
-    // Constructor to initialize MyStack class.
+    // Constructor to create an object MyStack class.
     public MyStack() {
         queue = new ArrayDeque<>();
         queueTemp = new ArrayDeque<>();
     }
 
+    /**
+     * Time Complexity: O(n), where n is the size of the queue.
+     * - Adding the new element to the back of the queue takes O(1) time.
+     * - Rotating the queue takes O(n - 1) time.
+     * - Therefore, the overall time complexity is O(n).
+     * Space Complexity: O(1)
+     * - It does not require any extra space.
+     *
+     * @param x The input integer to be added to the top of the stack.
+     */
     // Method to push element to the top of the stack.
-    public void push(int x) {
+    public void pushUsingOneQueue(int x) {
         // Add the new element to the rear of queue.
         queue.add(x);
+
+        // Rotate each element in the queue except the last added element
+        // to achieve Stack's Last-In First-Out behavior.
+        int n = queue.size();
+        while (n-- > 1) {
+            // Move each element from the front to the rear of the queue.
+            queue.add(queue.remove());
+        }
+        // After the rotation, the new element becomes the front element
+        // in the correct position to be removed first
+        // on a subsequent pop() operation (LIFO).
     }
 
-    // Method to remove and return the top element of the stack using two queues.
-    public int popUsingTwoQueues() {
-        // Move all elements except the last one from queue to queueTemp.
-        while (queue.size() > 1) {
-            // Remove the front element from queue.
-            int front = queue.remove();
-            // Add the front element from queue to the rear of queueTemp.
-            queueTemp.add(front);
+    /**
+     * Time Complexity: O(n), where n is the size of the queue.
+     * - Adding the new element to the back of the queue takes O(1) time.
+     * - Moving all the elements from queue to queueTemp takes O(n) time.
+     * - Swapping the queues takes O(1) time.
+     * - Therefore, the overall time complexity is O(n).
+     * Space Complexity: O()
+     * - It does not require any additional space.
+     * - We are just redistributing the elements between the two queues.
+     * - Assigning `queue` to `temp` for swapping is simply creating a reference
+     * `temp` that points to the same queue as `queue`
+     * and does not require any additional memory.
+     *
+     * @param x The input integer to be added to the top of the stack.
+     */
+
+    // Method to push element to the top of the stack.
+    public void pushUsingTwoQueues(int x) {
+        // Add the new element to the rear of queueTemp.
+        queueTemp.add(x);
+
+        // Move all elements from queue to queueTemp.
+        while (!queue.isEmpty()) {
+            // Move each element from the front of queue to the rear of the queueTemp.
+            queueTemp.add(queue.remove());
         }
-        // Remove the last element in queue, which is the top element of the stack.
-        int top = queue.remove();
         // Swap the references of the queues.
         Queue<Integer> temp = queue;
         queue = queueTemp;
         queueTemp = temp;
-        // Return the top element.
-        return top;
     }
+
+    /**
+     * Time Complexity: O(1)
+     * - Removing the front element of the queue takes a constant time complexity.
+     * Space Complexity: O(1)
+     * - It does not require any extra space.
+     *
+     * @return The integer element that is removed from the top of the stack.
+     */
 
     // Method to remove and return the top element of the stack using one queue.
-    public int popUsingOneQueue() {
-        // Rotate all elements except the last one from front to the rear of queue.
-        while (queue.size() > 1) {
-            // Remove the front element from queue.
-            int front = queue.remove();
-            // Add the front element back to the rear of queue.
-            queue.add(front);
-        }
-        // Remove the last element in queue, which is the top element of the stack.
-        int top = queue.remove();
-        // Return the top element.
-        return top;
+    public int pop() {
+        // Remove and return the front element of queue.
+        return queue.remove();
     }
 
-    // Method to return the top element of the stack using two queues.
-    public int topUsingTwoQueues() {
-        // Move all elements except the last one from queue to queueTemp.
-        while (queue.size() > 1) {
-            // Remove the front element from queue.
-            int front = queue.remove();
-            // Add the front element from queue to the rear of queueTemp.
-            queueTemp.add(front);
-        }
-        // Retrieve the last element in queue, which is the original top element of the
-        // stack.
-        int top = queue.peek();
-        // Move the last element in queue to the rear of queueTemp.
-        queueTemp.add(top);
-        // Swap the references of the queues.
-        Queue<Integer> temp = queue;
-        queue = queueTemp;
-        queueTemp = temp;
-        // Return the top element.
-        return top;
-    }
+    /**
+     * Time Complexity: O(1)
+     * - Retrieving the front element of the queue takes a constant time complexity.
+     * Space Complexity: O(1)
+     * - It does not require any extra space.
+     *
+     * @return The integer element at the top of the stack.
+     */
 
     // Method to return the top element of the stack using one queue.
-    public int topUsingOneQueue() {
-        // Rotate all elements except the last one from front to the rear of queue.
-        while (queue.size() > 1) {
-            // Remove the front element from queue.
-            int front = queue.remove();
-            // Add the front element back to the rear of queue.
-            queue.add(front);
-        }
-        // Retrieve the front element in queue, which is the original top element of the
-        // stack.
-        int top = queue.peek();
-        // Move the element back to the rear of queue.
-        queue.add(top);
-        // Return the top element.
-        return top;
+    public int top() {
+        // Return the front element of queue.
+        return queue.peek();
     }
+
+    /**
+     * Time Complexity: O(1)
+     * - Checking the size of queue takes a constant time complexity.
+     * Space Complexity: O(1)
+     * - It does not require any extra space.
+     *
+     * @return True is the stack is empty, false otherwise.
+     */
 
     // Method to check if the stack is empty.
     public boolean empty() {
-        // Return true if the list is empty, false otherwise.
+        // Return true if the queue is empty, false otherwise.
         return queue.isEmpty();
     }
 }
@@ -122,18 +140,18 @@ public class ImplementStackUsingQueues {
         MyStack myStack = new MyStack();
 
         // Test
-        myStack.push(1);
-        System.out.println("Top element after pushing 1: " + myStack.topUsingOneQueue()); // Return 1.
-        myStack.push(2);
-        System.out.println("Top element after pushing 2: " + myStack.topUsingOneQueue()); // Return 2.
-        myStack.push(3);
-        System.out.println("Top element after pushing 3: " + myStack.topUsingTwoQueues()); // Return 3.
-        myStack.push(4);
-        System.out.println("Top element after pushing 4: " + myStack.topUsingTwoQueues()); // Return 4.
-        System.out.println("Popped element: " + myStack.popUsingOneQueue()); // Return 4.
-        System.out.println("Popped element: " + myStack.popUsingOneQueue()); // Return 3.
-        System.out.println("Popped element: " + myStack.popUsingTwoQueues()); // Return 2.
-        System.out.println("Popped element: " + myStack.popUsingTwoQueues()); // Return 1.
+        myStack.pushUsingOneQueue(1);
+        System.out.println("Top element after pushing 1: " + myStack.top()); // Return 1.
+        myStack.pushUsingOneQueue(2);
+        System.out.println("Top element after pushing 2: " + myStack.top()); // Return 2.
+        myStack.pushUsingTwoQueues(3);
+        System.out.println("Top element after pushing 3: " + myStack.top()); // Return 3.
+        myStack.pushUsingTwoQueues(4);
+        System.out.println("Top element after pushing 4: " + myStack.top()); // Return 4.
+        System.out.println("Popped element: " + myStack.pop()); // Return 4.
+        System.out.println("Popped element: " + myStack.pop()); // Return 3.
+        System.out.println("Popped element: " + myStack.pop()); // Return 2.
+        System.out.println("Popped element: " + myStack.pop()); // Return 1.
         System.out.println("Is stack empty: " + myStack.empty()); // Return true.
     }
 }

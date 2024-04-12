@@ -21,11 +21,11 @@ class MyStack {
      */
 
     // Initialize two queues.
-    private Queue<Integer> queue;
-    private Queue<Integer> queueTemp;
+    Queue<Integer> queue;
+    Queue<Integer> queueTemp;
 
     // Constructor to create an object MyStack class.
-    public MyStack() {
+    MyStack() {
         queue = new ArrayDeque<>();
         queueTemp = new ArrayDeque<>();
     }
@@ -38,9 +38,9 @@ class MyStack {
      * Space Complexity: O(1)
      * - It does not require any extra space.
      *
-     * @param x The input integer to be added to the top of the stack.
+     * @param x The input integer to be pushed onto the top of the stack.
      */
-    // Method to push element to the top of the stack.
+    // Method to push element to the top of the stack using one queue.
     public void pushUsingOneQueue(int x) {
         // Add the new element to the rear of queue.
         queue.add(x);
@@ -63,7 +63,7 @@ class MyStack {
      * - Moving all the elements from queue to queueTemp takes O(n) time.
      * - Swapping the queues takes O(1) time.
      * - Therefore, the overall time complexity is O(n).
-     * Space Complexity: O()
+     * Space Complexity: O(1)
      * - It does not require any additional space.
      * - We are just redistributing the elements between the two queues.
      * - Assigning `queue` to `temp` for swapping is simply creating a reference
@@ -73,7 +73,7 @@ class MyStack {
      * @param x The input integer to be added to the top of the stack.
      */
 
-    // Method to push element to the top of the stack.
+    // Method to push element to the top of the stack using two queues.
     public void pushUsingTwoQueues(int x) {
         // Add the new element to the rear of queueTemp.
         queueTemp.add(x);
@@ -98,7 +98,7 @@ class MyStack {
      * @return The integer element that is removed from the top of the stack.
      */
 
-    // Method to remove and return the top element of the stack using one queue.
+    // Method to remove and return the top element of the stack.
     public int pop() {
         // Remove and return the front element of queue.
         return queue.remove();
@@ -113,7 +113,7 @@ class MyStack {
      * @return The integer element at the top of the stack.
      */
 
-    // Method to return the top element of the stack using one queue.
+    // Method to return the top element of the stack.
     public int top() {
         // Return the front element of queue.
         return queue.peek();
@@ -141,17 +141,31 @@ public class ImplementStackUsingQueues {
 
         // Test
         myStack.pushUsingOneQueue(1);
-        System.out.println("Top element after pushing 1: " + myStack.top()); // Return 1.
+        System.out.println("After pushing 1, stack is " + myStack.queue); // Return "After pushing 1, stack is [1]".
+        System.out.println("Top element is " + myStack.top()); // Return "Top element is 1".
         myStack.pushUsingOneQueue(2);
-        System.out.println("Top element after pushing 2: " + myStack.top()); // Return 2.
+        System.out.println("After pushing 2, stack is " + myStack.queue); // Return "After pushing 2, stack is [2, 1]".
+        System.out.println("Top element is " + myStack.top()); // Return "Top element is 2".
         myStack.pushUsingTwoQueues(3);
-        System.out.println("Top element after pushing 3: " + myStack.top()); // Return 3.
+        System.out.println("After pushing 3, stack is " + myStack.queue); // Return "After pushing 3, stack is [3, 2,
+                                                                          // 1]".
+        System.out.println("Top element is " + myStack.top()); // Return "Top element is 3".
         myStack.pushUsingTwoQueues(4);
-        System.out.println("Top element after pushing 4: " + myStack.top()); // Return 4.
-        System.out.println("Popped element: " + myStack.pop()); // Return 4.
-        System.out.println("Popped element: " + myStack.pop()); // Return 3.
-        System.out.println("Popped element: " + myStack.pop()); // Return 2.
-        System.out.println("Popped element: " + myStack.pop()); // Return 1.
-        System.out.println("Is stack empty: " + myStack.empty()); // Return true.
+        System.out.println("After pushing 4, stack is " + myStack.queue); // Return "After pushing 4, stack is [4, 3, 2,
+                                                                          // 1]".
+        System.out.println("Top element is " + myStack.top()); // Return "Top element is 4".
+        System.out.println();
+        System.out.println("Is stack empty: " + myStack.empty()); // Return "Is queue empty: false".
+        System.out.println();
+        System.out.println("After popping " + myStack.pop() + ", stack is " + myStack.queue); // Return "After popping
+                                                                                              // 4, stack is [3, 2, 1]".
+        System.out.println("After popping " + myStack.pop() + ", stack is " + myStack.queue); // Return "After popping
+                                                                                              // 4, stack is [2, 1]".
+        System.out.println("After popping " + myStack.pop() + ", stack is " + myStack.queue); // Return "After popping
+                                                                                              // 4, stack is [1]".
+        System.out.println("After popping " + myStack.pop() + ", stack is " + myStack.queue); // Return "After popping
+                                                                                              // 4, stack is []".
+        System.out.println();
+        System.out.println("Is stack empty: " + myStack.empty()); // Return "Is stack empty: true".
     }
 }

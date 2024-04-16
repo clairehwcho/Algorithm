@@ -35,30 +35,28 @@ class SinglyLinkedList {
 
     // Method to insert a new node at the end of the list.
     public void insertAtBack(int val) {
+        // Create a new node with the given value.
+        ListNode newNode = new ListNode(val);
+
         // If the list is empty
         if (head == null) {
-            // Print an empty list.
-            System.out.print("null");
+            // Set the head to the newly created node.
+            head = newNode;
         }
         // If the list is not empty
         else {
             // Create a current node pointer and set it to the head.
             ListNode curr = head;
             // Iterate through each node until it reaches the last node.
-            while (curr != null) {
-                // Print the value of the current node.
-                System.out.print(curr.val);
-                // If the next node exists
-                if (curr.next != null) {
-                    // Add comma between the nodes.
-                    System.out.print(", ");
-                }
+            while (curr.next != null) {
                 // Update the current node to the next node.
                 curr = curr.next;
             }
+            // After the loop, the current node refers to the last node in the list.
+            // Set the next of the current node to point to the newly created node.
+            curr.next = newNode;
         }
-        // Print a new line at the end.
-        System.out.println();
+        System.out.println(val + " inserted");
     }
 
     // Method to insert multiple nodes at the end of the list.

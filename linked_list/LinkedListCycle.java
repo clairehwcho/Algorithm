@@ -279,18 +279,21 @@ public class LinkedListCycle {
         System.out.println("Input pos: " + pos1);
         System.out.println("Expected Output: " + expectedOutput1);
         System.out.println("Actual Output: " + solutionOne(list1.head));
+        System.out.println();
 
         System.out.println("Test Case 2:");
         System.out.println("Input List: [ 1, 2 ]");
         System.out.println("Input pos: " + pos2);
         System.out.println("Expected Output: " + expectedOutput2);
         System.out.println("Actual Output: " + solutionOne(list2.head));
+        System.out.println();
 
         System.out.println("Test Case 3:");
         System.out.println("Input List: [ 1 ]");
         System.out.println("Input pos: " + pos3);
         System.out.println("Expected Output: " + expectedOutput3);
         System.out.println("Actual Output: " + solutionOne(list3.head));
+        System.out.println();
 
         // Test solutionTwo
         System.out.println("*****Testing solutionTwo*****");
@@ -299,12 +302,14 @@ public class LinkedListCycle {
         System.out.println("Input pos: " + pos1);
         System.out.println("Expected Output: " + expectedOutput1);
         System.out.println("Actual Output: " + solutionTwo(list1.head));
+        System.out.println();
 
         System.out.println("Test Case 2:");
         System.out.println("Input List: [ 1, 2 ]");
         System.out.println("Input pos: " + pos2);
         System.out.println("Expected Output: " + expectedOutput2);
         System.out.println("Actual Output: " + solutionTwo(list2.head));
+        System.out.println();
 
         System.out.println("Test Case 3:");
         System.out.println("Input List: [ 1 ]");

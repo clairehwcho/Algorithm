@@ -4,7 +4,7 @@ import java.util.*;
 
 // Define TreeNode
 class TreeNode {
-    // A single tree node has one three fields.
+    // A single tree node has three fields.
     int val; // The value of the node.
     TreeNode left; // The reference to the left child node.
     TreeNode right; // The reference to the right child node.
@@ -45,41 +45,42 @@ class BinaryTree {
             return;
         }
 
-        // Create a queue for level-order traversal and add the root node.
+        // Create a queue for level-order traversal.
         Queue<TreeNode> queue = new LinkedList<>();
+        // Set the first value of the array to the root node's value.
         root = new TreeNode(vals[0]);
-        queue.add(root);
+        // Add the root node to the queue.
+        queue.offer(root);
 
         // Initialize an index to traverse the array from the second element.
         int i = 1;
 
-        // Build the binary tree using level-order traversal.
+        // Loop through the array to build the binary tree using level-order traversal.
         while (!queue.isEmpty() && i < vals.length) {
             // Get the front node from the queue.
-            TreeNode curr = queue.remove();
+            TreeNode curr = queue.poll();
 
-            // Add left child if there are more values.
-            if (i < vals.length) {
-                // If value is not null (-1)
-                if (vals[i] != -1) {
-                    curr.left = new TreeNode(vals[i]);
-                    queue.add(curr.left);
-                }
-                // Move to the next value in the array.
-                i++;
+            // If there are more values in the array
+            // and the current value is not null (-1)
+            if (i < vals.length && vals[i] != -1) {
+                // Set the current value to the left child.
+                curr.left = new TreeNode(vals[i]);
+                // Add the left child to the queue.
+                queue.offer(curr.left);
             }
-            // If there are more values in the array.
-            if (i < vals.length) {
-                // And if the current value is not null (-1)
-                if (vals[i] != -1) {
-                    // Set the current value to the right child.
-                    curr.right = new TreeNode(vals[i]);
-                    // Add the right child to the queue.
-                    queue.add(curr.right);
-                }
-                // Move to the next value in the array.
-                i++;
+            // Move to the next value in the array.
+            i++;
+
+            // If there are more values in the array
+            // and the current value is not null (-1)
+            if (i < vals.length && vals[i] != -1) {
+                // Set the current value to the right child.
+                curr.right = new TreeNode(vals[i]);
+                // Add the right child to the queue.
+                queue.offer(curr.right);
             }
+            // Move to the next value in the array.
+            i++;
         }
     }
 
@@ -94,8 +95,8 @@ class BinaryTree {
 
         // Create a queue for level-order traversal.
         Queue<TreeNode> queue = new LinkedList<>();
-        // Start traversal from the root node.
-        queue.add(root);
+        // Add the root node to the queue.
+        queue.offer(root);
 
         // Create a StringBuilder to construct the result string.
         StringBuilder result = new StringBuilder();
@@ -122,8 +123,8 @@ class BinaryTree {
                     // Else, append the node's value.
                     result.append(curr.val).append(", ");
                     // Add the left and right children to the queue for the next level.
-                    queue.add(curr.left);
-                    queue.add(curr.right);
+                    queue.offer(curr.left);
+                    queue.offer(curr.right);
                 }
             }
             // Increment the current level counter.
@@ -153,7 +154,7 @@ public class InvertBinaryTree {
      * - Swapping is a constant-time operation.
      * Space Complexity: O(n)
      * - The maximum stack depth can vary from O(logn) to O(n),
-     * depending on the height of the ree.
+     * depending on the height of the tree.
      *
      * @param root The input root node of the tree to be inverted.
      * @return The root of the inverted tree.
@@ -185,8 +186,8 @@ public class InvertBinaryTree {
      * - Each node is visited only once.
      * - Swapping is a constant-time operation.
      * Space Complexity: O(n)
-     * - The maximum stack depth can vary from O(logn) to O(n),
-     * depending on the height of the ree.
+     * - The maximum size of queue holding nodes at each level during
+     * level-order traversal could amount to all nodes in the tree at most.
      *
      * @param root The input root node of the tree to be inverted.
      * @return The root of the inverted tree.
@@ -200,7 +201,7 @@ public class InvertBinaryTree {
         // Create a queue for level-order traversal.
         Queue<TreeNode> queue = new LinkedList<>();
         // Start traversal from the root node.
-        queue.add(root);
+        queue.offer(root);
 
         // Perform level-order traversal to invert the tree.
         while (!queue.isEmpty()) {
@@ -218,11 +219,11 @@ public class InvertBinaryTree {
 
                 // Add the left child to the queue if it exists.
                 if (curr.left != null) {
-                    queue.add(curr.left);
+                    queue.offer(curr.left);
                 }
                 // Add the right child to the queue if it exists.
                 if (curr.right != null) {
-                    queue.add(curr.right);
+                    queue.offer(curr.right);
                 }
             }
         }

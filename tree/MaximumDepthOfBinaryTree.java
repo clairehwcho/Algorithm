@@ -50,7 +50,7 @@ class BinaryTree {
         // Set the first value of the array to the root node's value.
         root = new TreeNode(vals[0]);
         // Add the root node to the queue.
-        queue.add(root);
+        queue.offer(root);
 
         // Initialize an index to traverse the array from the second element.
         int i = 1;
@@ -58,32 +58,29 @@ class BinaryTree {
         // Loop through the array to build the binary tree using level-order traversal.
         while (!queue.isEmpty() && i < vals.length) {
             // Get the front node from the queue.
-            TreeNode curr = queue.remove();
+            TreeNode curr = queue.poll();
 
-            // If there are more values in the array.
-            if (i < vals.length) {
-                // And if the current value is not null (-1)
-                if (vals[i] != -1) {
-                    // Set the current value to the left child.
-                    curr.left = new TreeNode(vals[i]);
-                    // Add the left child to the queue.
-                    queue.add(curr.left);
-                }
-                // Move to the next value in the array.
-                i++;
+            // If there are more values in the array
+            // and the current value is not null (-1)
+            if (i < vals.length && vals[i] != -1) {
+                // Set the current value to the left child.
+                curr.left = new TreeNode(vals[i]);
+                // Add the left child to the queue.
+                queue.offer(curr.left);
             }
-            // If there are more values in the array.
-            if (i < vals.length) {
-                // And if the current value is not null (-1)
-                if (vals[i] != -1) {
-                    // Set the current value to the right child.
-                    curr.right = new TreeNode(vals[i]);
-                    // Add the right child to the queue.
-                    queue.add(curr.right);
-                }
-                // Move to the next value in the array.
-                i++;
+            // Move to the next value in the array.
+            i++;
+
+            // If there are more values in the array
+            // and the current value is not null (-1)
+            if (i < vals.length && vals[i] != -1) {
+                // Set the current value to the right child.
+                curr.right = new TreeNode(vals[i]);
+                // Add the right child to the queue.
+                queue.offer(curr.right);
             }
+            // Move to the next value in the array.
+            i++;
         }
     }
 
@@ -99,8 +96,8 @@ class BinaryTree {
         // Create a queue for level-order traversal,
         // using LinkedList instead of ArrayDeque to add a `null` node to a queue.
         Queue<TreeNode> queue = new LinkedList<>();
-        // Start traversal from the root node.
-        queue.add(root);
+        // Add the root node to the queue.
+        queue.offer(root);
 
         // Create a StringBuilder to construct the result string.
         StringBuilder result = new StringBuilder();
@@ -127,8 +124,8 @@ class BinaryTree {
                     // Else, append the node's value.
                     result.append(curr.val).append(", ");
                     // Add the left and right children to the queue for the next level.
-                    queue.add(curr.left);
-                    queue.add(curr.right);
+                    queue.offer(curr.left);
+                    queue.offer(curr.right);
                 }
             }
             // Increment the current level counter.
@@ -203,7 +200,7 @@ public class MaximumDepthOfBinaryTree {
         // Create a queue for level-order traversal.
         Queue<TreeNode> queue = new LinkedList<>();
         // Start traversal from the root node.
-        queue.add(root);
+        queue.offer(root);
 
         // Initialize a variable to track the depth of the tree.
         int depth = 0;
@@ -223,12 +220,12 @@ public class MaximumDepthOfBinaryTree {
 
                 // Add left child to the queue if it exists.
                 if (curr.left != null) {
-                    queue.add(curr.left);
+                    queue.offer(curr.left);
                 }
 
                 // Add right child to the queue if it exists.
                 if (curr.right != null) {
-                    queue.add(curr.right);
+                    queue.offer(curr.right);
                 }
             }
         }

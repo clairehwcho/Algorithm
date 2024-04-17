@@ -4,7 +4,7 @@ import java.util.*;
 
 // Define TreeNode
 class TreeNode {
-    // A single tree node has three fields.
+    // A single tree node has one three fields.
     int val; // The value of the node.
     TreeNode left; // The reference to the left child node.
     TreeNode right; // The reference to the right child node.
@@ -27,7 +27,7 @@ class TreeNode {
     }
 }
 
-// Define BinaryTree.
+// Define BinaryTree
 class BinaryTree {
     // A binary tree has one field.
     TreeNode root; // The reference to the topmost node of the tree.
@@ -45,28 +45,24 @@ class BinaryTree {
             return;
         }
 
-        // Create a queue for level-order traversal.
+        // Create a queue for level-order traversal and add the root node.
         Queue<TreeNode> queue = new LinkedList<>();
-        // Set the first value of the array to the root node's value.
         root = new TreeNode(vals[0]);
-        // Add the root node to the queue.
         queue.add(root);
 
         // Initialize an index to traverse the array from the second element.
         int i = 1;
 
-        // Loop through the array to build the binary tree using level-order traversal.
+        // Build the binary tree using level-order traversal.
         while (!queue.isEmpty() && i < vals.length) {
             // Get the front node from the queue.
             TreeNode curr = queue.remove();
 
-            // If there are more values in the array.
+            // Add left child if there are more values.
             if (i < vals.length) {
-                // And if the current value is not null (-1)
+                // If value is not null (-1)
                 if (vals[i] != -1) {
-                    // Set the current value to the left child.
                     curr.left = new TreeNode(vals[i]);
-                    // Add the left child to the queue.
                     queue.add(curr.left);
                 }
                 // Move to the next value in the array.
@@ -96,8 +92,7 @@ class BinaryTree {
             return;
         }
 
-        // Create a queue for level-order traversal,
-        // using LinkedList instead of ArrayDeque to add a `null` node to a queue.
+        // Create a queue for level-order traversal.
         Queue<TreeNode> queue = new LinkedList<>();
         // Start traversal from the root node.
         queue.add(root);
@@ -145,59 +140,61 @@ class BinaryTree {
     }
 }
 
-public class MaximumDepthOfBinaryTree {
+public class InvertBinaryTree {
     /**
-     * Given the root of a binary tree, return its maximum depth.
-     * A binary tree's maximum depth is the number of nodes along the longest path
-     * from the root node down to the farthest leaf node.
+     * Given the root of a binary tree,
+     * invert the tree, and return its root.
      */
 
     /**
-     * Approach 1: Recursion (Depth-First Search)
+     * Approach 1: Recursion
      * Time Complexity: O(n), where n is the number of nodes in the tree.
-     * - We visit each node exactly once.
+     * - Each node is visited only once.
+     * - Swapping is a constant-time operation.
      * Space Complexity: O(n)
-     * - It is determined by the maximum depth of the recursion stack.
-     * - In the worst case (a skewed binary tree or linked list),
-     * the height of the binary tree would be equal to the number of nodes, n.
-     * - In the best case (a perfectly balanced binary tree),
-     * the height would be approximately logn.
+     * - The maximum stack depth can vary from O(logn) to O(n),
+     * depending on the height of the ree.
      *
-     * @param root The root node of a binary tree.
-     * @return The maximum depth of the binary tree.
+     * @param root The input root node of the tree to be inverted.
+     * @return The root of the inverted tree.
      */
-
-    public static int solutionOne(TreeNode root) {
-        // Base case: If the tree is empty, the depth is zero.
+    public static TreeNode solutionOne(TreeNode root) {
+        // Base case: If the current node is null, return null.
         if (root == null) {
-            return 0;
+            return null;
         }
-        // Recursive case: Calculate the maximum depth of the tree.
+        // Recursive case:
         else {
-            // Recursively calculate depths of left and right subtrees
-            int leftDepth = solutionOne(root.left);
-            int rightDepth = solutionOne(root.right);
-            // Return the larger depth plus one for the current node.
-            return Math.max(leftDepth, rightDepth) + 1;
+            // Swap the left and right nodes.
+            TreeNode temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+            // Recursively apply the function to the left and right nodes.
+            solutionOne(root.left);
+            solutionOne(root.right);
+
+            // Return the root of the inverted tree.
+            return root;
         }
     }
 
     /**
-     * Approach 2: Iteration (Breadth-First Search)
+     * Approach 2: Iteration
      * Time Complexity: O(n), where n is the number of nodes in the tree.
-     * - We visit each node exactly once to add to and remove from the queue.
+     * - Each node is visited only once.
+     * - Swapping is a constant-time operation.
      * Space Complexity: O(n)
-     * - It is determined by the maximum number of nodes at any level of the tree.
-     * - The queue may hold up to n nodes in an unbalanced tree.
+     * - The maximum stack depth can vary from O(logn) to O(n),
+     * depending on the height of the ree.
      *
-     * @param root The root node of a binary tree.
-     * @return The maximum depth of the binary tree.
+     * @param root The input root node of the tree to be inverted.
+     * @return The root of the inverted tree.
      */
-
-    public static int solutionTwo(TreeNode root) {
-        // Early exit check: If the tree is empty, the depth is zero.
+    public static TreeNode solutionTwo(TreeNode root) {
+        // Early exit check: If the tree is empty, return null.
         if (root == null) {
-            return 0;
+            return root;
         }
 
         // Create a queue for level-order traversal.
@@ -205,14 +202,8 @@ public class MaximumDepthOfBinaryTree {
         // Start traversal from the root node.
         queue.add(root);
 
-        // Initialize a variable to track the depth of the tree.
-        int depth = 0;
-
-        // Perform level-order traversal to calculate the maximum depth.
+        // Perform level-order traversal to invert the tree.
         while (!queue.isEmpty()) {
-            // Increment the depth at the start of each level
-            depth++;
-
             // Get the number of nodes at the current level.
             int levelSize = queue.size();
 
@@ -220,78 +211,136 @@ public class MaximumDepthOfBinaryTree {
             for (int i = 0; i < levelSize; i++) {
                 // Remove the front node from the queue.
                 TreeNode curr = queue.poll();
+                // Swap the left and right nodes.
+                TreeNode temp = curr.left;
+                curr.left = curr.right;
+                curr.right = temp;
 
-                // Add left child to the queue if it exists.
+                // Add the left child to the queue if it exists.
                 if (curr.left != null) {
                     queue.add(curr.left);
                 }
-
-                // Add right child to the queue if it exists.
+                // Add the right child to the queue if it exists.
                 if (curr.right != null) {
                     queue.add(curr.right);
                 }
             }
         }
-
-        // Return the maximum depth of the tree.
-        return depth;
+        // Return the root of the inverted tree.
+        return root;
     }
 
     public static void main(String[] args) {
         // Test case 1: A three-level tree
+        int[] inputVals1 = new int[] { 4, 2, 7, 1, 3, 6, 9 };
         BinaryTree tree1 = new BinaryTree();
-        tree1.buildTreeLevelOrder(new int[] { 3, 9, 20, -1, -1, 15, 7 });
-        int expectedOutput1 = 3;
+        tree1.buildTreeLevelOrder(inputVals1);
+        int[] outputVals1 = new int[] { 4, 7, 2, 9, 6, 3, 1 };
+        BinaryTree expectedOutput1 = new BinaryTree();
+        expectedOutput1.buildTreeLevelOrder(outputVals1);
 
         // Test case 2: A two-level tree
+        int[] inputVals2 = new int[] { 2, 1, 3 };
         BinaryTree tree2 = new BinaryTree();
-        tree2.buildTreeLevelOrder(new int[] { 1, -1, 2 });
-        int expectedOutput2 = 2;
+        tree2.buildTreeLevelOrder(inputVals2);
+        int[] outputVals2 = new int[] { 2, 3, 1 };
+        BinaryTree expectedOutput2 = new BinaryTree();
+        expectedOutput2.buildTreeLevelOrder(outputVals2);
 
         // Test case 3: An empty tree
         BinaryTree tree3 = new BinaryTree();
-        int expectedOutput3 = 0;
+        BinaryTree expectedOutput3 = new BinaryTree();
 
         // Test solutionOne
         System.out.println("*****Testing solutionOne*****");
         System.out.println("Test Case 1:");
         System.out.print("Input Tree: ");
-        tree1.printLevelOrder(expectedOutput1);
-        System.out.println("Expected Output: " + expectedOutput1);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionOne(tree1.root));
+        tree1.printLevelOrder(3);
+        System.out.print("Expected Output: ");
+        expectedOutput1.printLevelOrder(3);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionOneInputTree1 = new BinaryTree();
+        solutionOneInputTree1.buildTreeLevelOrder(inputVals1);
+        TreeNode solutionOneInputRoot1 = solutionOneInputTree1.root;
+        TreeNode solutionOneOutputRoot1 = InvertBinaryTree.solutionOne(solutionOneInputRoot1);
+        BinaryTree solutionOneOutputTree1 = new BinaryTree();
+        solutionOneOutputTree1.root = solutionOneOutputRoot1;
+        solutionOneOutputTree1.printLevelOrder(3);
         System.out.println();
+
         System.out.println("Test Case 2:");
         System.out.print("Input Tree: ");
-        tree2.printLevelOrder(expectedOutput2);
-        System.out.println("Expected Output: " + expectedOutput2);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionOne(tree2.root));
+        tree2.printLevelOrder(2);
+        System.out.print("Expected Output: ");
+        expectedOutput2.printLevelOrder(2);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionOneInputTree2 = new BinaryTree();
+        solutionOneInputTree2.buildTreeLevelOrder(inputVals2);
+        TreeNode solutionOneInputRoot2 = solutionOneInputTree2.root;
+        TreeNode solutionOneOutputRoot2 = InvertBinaryTree.solutionOne(solutionOneInputRoot2);
+        BinaryTree solutionOneOutputTree2 = new BinaryTree();
+        solutionOneOutputTree2.root = solutionOneOutputRoot2;
+        solutionOneOutputTree2.printLevelOrder(2);
         System.out.println();
+
         System.out.println("Test Case 3:");
         System.out.print("Input Tree: ");
-        tree3.printLevelOrder(expectedOutput3);
-        System.out.println("Expected Output: " + expectedOutput3);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionOne(tree3.root));
+        tree3.printLevelOrder(0);
+        System.out.print("Expected Output: ");
+        expectedOutput3.printLevelOrder(0);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionOneInputTree3 = new BinaryTree();
+        TreeNode solutionOneInputRoot3 = solutionOneInputTree3.root;
+        TreeNode solutionOneOutputRoot3 = InvertBinaryTree.solutionOne(solutionOneInputRoot3);
+        BinaryTree solutionOneOutputTree3 = new BinaryTree();
+        solutionOneOutputTree3.root = solutionOneOutputRoot3;
+        solutionOneOutputTree3.printLevelOrder(0);
         System.out.println();
 
         // Test solutionTwo
         System.out.println("*****Testing solutionTwo*****");
         System.out.println("Test Case 1:");
         System.out.print("Input Tree: ");
-        tree1.printLevelOrder(expectedOutput1);
-        System.out.println("Expected Output: " + expectedOutput1);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionTwo(tree1.root));
+        tree1.printLevelOrder(3);
+        System.out.print("Expected Output: ");
+        expectedOutput1.printLevelOrder(3);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionTwoInputTree1 = new BinaryTree();
+        solutionTwoInputTree1.buildTreeLevelOrder(inputVals1);
+        TreeNode solutionTwoInputRoot1 = solutionTwoInputTree1.root;
+        TreeNode solutionTwoOutputRoot1 = InvertBinaryTree.solutionTwo(solutionTwoInputRoot1);
+        BinaryTree solutionTwoOutputTree1 = new BinaryTree();
+        solutionTwoOutputTree1.root = solutionTwoOutputRoot1;
+        solutionTwoOutputTree1.printLevelOrder(3);
         System.out.println();
+
         System.out.println("Test Case 2:");
         System.out.print("Input Tree: ");
-        tree2.printLevelOrder(expectedOutput2);
-        System.out.println("Expected Output: " + expectedOutput2);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionTwo(tree2.root));
+        tree2.printLevelOrder(2);
+        System.out.print("Expected Output: ");
+        expectedOutput2.printLevelOrder(2);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionTwoInputTree2 = new BinaryTree();
+        solutionTwoInputTree2.buildTreeLevelOrder(inputVals2);
+        TreeNode solutionTwoInputRoot2 = solutionTwoInputTree2.root;
+        TreeNode solutionTwoOutputRoot2 = InvertBinaryTree.solutionTwo(solutionTwoInputRoot2);
+        BinaryTree solutionTwoOutputTree2 = new BinaryTree();
+        solutionTwoOutputTree2.root = solutionTwoOutputRoot2;
+        solutionTwoOutputTree2.printLevelOrder(2);
         System.out.println();
+
         System.out.println("Test Case 3:");
         System.out.print("Input Tree: ");
-        tree3.printLevelOrder(expectedOutput3);
-        System.out.println("Expected Output: " + expectedOutput3);
-        System.out.println("Actual Output: " + MaximumDepthOfBinaryTree.solutionTwo(tree3.root));
+        tree3.printLevelOrder(0);
+        System.out.print("Expected Output: ");
+        expectedOutput3.printLevelOrder(0);
+        System.out.print("Actual Output: ");
+        BinaryTree solutionTwoInputTree3 = new BinaryTree();
+        TreeNode solutionTwoInputRoot3 = solutionTwoInputTree3.root;
+        TreeNode solutionTwoOutputRoot3 = InvertBinaryTree.solutionTwo(solutionTwoInputRoot3);
+        BinaryTree solutionTwoOutputTree3 = new BinaryTree();
+        solutionTwoOutputTree3.root = solutionTwoOutputRoot3;
+        solutionTwoOutputTree3.printLevelOrder(0);
         System.out.println();
     }
 }

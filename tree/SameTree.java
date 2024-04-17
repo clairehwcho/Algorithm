@@ -118,7 +118,7 @@ class BinaryTree {
 
                 // Append "null" if the node is null
                 if (curr == null) {
-                    result.append("null");
+                    result.append("null, ");
                 } else {
                     // Else, append the node's value.
                     result.append(curr.val).append(", ");

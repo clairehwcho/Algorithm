@@ -25,7 +25,7 @@ public class FloodFill {
      */
 
     /**
-     * Approach 1: Depth-First Search
+     * Approach 1: Recursion (Depth-First Search)
      * Time Complexity: O(m * n), where m is the number of rows
      * and n is the number of columns.
      * - The flood fill might need to visit each pixel once in the worst case.
@@ -73,12 +73,13 @@ public class FloodFill {
     }
 
     /**
-     * Approach 2: Breadth-First Search
+     * Approach 2: Iteration (Breadth-First Search)
      * Time Complexity: O(m * n), where m is the number of rows
      * and n is the number of columns.
-     * - The flood fill might need to visit each pixel once in the worst case.
+     * - Each pixel is visited once and added to the queue once.
      * Space Complexity: O(m * n)
-     * - The recursion stack may go up to the number of pixels in the image.
+     * - In the worst case, the queue may store up to all elements at a time.
+     * - It takes a constant amount of extra space to store the directions array.
      *
      * @param image The 2D array representing the image where each element is a
      *              pixel value.

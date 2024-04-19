@@ -130,7 +130,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
      * Time Complexity: O(n), where n is the length of the string.
      * - The string is traversed only once.
      * Space Complexity: O(n)
-     * - The hash set of unique characters can contain up to n characters.
+     * - The hash map of unique characters can contain up to n characters.
      *
      * @param s The input string.
      * @return The length of the longest substring without repeating characters.
@@ -143,8 +143,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
         int start = 0;
         int end = 0;
 
-        // Initialize an empty HashMap to map each character
-        // to its latest index of occurrence within the current window.
+        // Initialize an empty HashMap to keep track of characters
+        // and their latest index of occurrence within the current window.
         Map<Character, Integer> map = new HashMap<>();
 
         // Loop through the string while the pointers are within bounds.
